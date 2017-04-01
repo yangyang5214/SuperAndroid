@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        applicationId "com.example.administrator.superandroid"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+repositories{
+    flatDir{
+        dirs 'libs' //就是你放aar的目录地址
+    }
+}
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.2.0'
+    compile 'com.jakewharton:butterknife:8.4.0'
+    testCompile 'junit:junit:4.12'
+    compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'com.yancy.imageselector:imageselector:1.3.3'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.android.support:recyclerview-v7:25.2.0'
+    compile files('libs/MobCommons-2017.0321.1624.jar')
+    compile files('libs/MobTools-2017.0321.1624.jar')
+    compile name: 'SMSSDK-2.1.4', ext: 'aar'
+    compile name: 'SMSSDKGUI-2.1.4', ext: 'aar'
+    compile files('libs/universal-image-loader-1.8.6-with-sources.jar')
+}
