@@ -1,6 +1,5 @@
 package com.example.administrator.superandroid.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,22 +8,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.dto.ResponseDto;
 import com.example.administrator.superandroid.dto.UserDto;
-import com.example.administrator.superandroid.intent.RestClient;
+import com.example.administrator.superandroid.intent.RetrofitClient;
 import com.example.administrator.superandroid.util.ConfigUtil;
 import com.example.administrator.superandroid.util.StringUtil;
-import com.google.gson.Gson;
 
-import java.io.IOException;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public Button buttonLogin;
 
-    private RestClient mRestClient;
+    private RetrofitClient mRestClient;
 
     private String username;
 
@@ -71,8 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (StringUtil.isNotEmpty(username) || StringUtil.isNotEmpty(password)){
                     Toast.makeText(getApplicationContext(), ConfigUtil.getValueByKey(getApplicationContext(),"username.or.password.not.null"), Toast.LENGTH_SHORT).show();
                 }
-                mRestClient = new RestClient();
-                Call<ResponseDto<UserDto>> responseBodyCall = mRestClient.getRectService().login(username, password);
+                Call<ResponseDto<UserDto>> responseBodyCall = RetrofitClient.getClient().login(username, password);
                 responseBodyCall.enqueue(new Callback<ResponseDto<UserDto>>() {
                     @Override
                     public void onResponse(Call<ResponseDto<UserDto>> call, Response<ResponseDto<UserDto>> response) {

@@ -3,13 +3,8 @@ package com.example.administrator.superandroid.activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,18 +15,16 @@ import com.example.administrator.superandroid.adapter.SelectedImagesAdapter;
 import com.example.administrator.superandroid.dto.MovingDto;
 import com.example.administrator.superandroid.dto.PhotoUpImageItem;
 import com.example.administrator.superandroid.dto.ResponseDto;
-import com.example.administrator.superandroid.intent.RestClient;
+import com.example.administrator.superandroid.intent.RetrofitClient;
 import com.example.administrator.superandroid.util.ImageUtil;
-import com.yancy.imageselector.ImageSelector;
-import com.yancy.imageselector.ImageSelectorActivity;
+import com.google.gson.Gson;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -95,12 +88,12 @@ public class PublishMovingActivity extends AppCompatActivity implements View.OnC
             }
         }
         partList = ImageUtil.filesToMultipartBodyParts(filePaths);
-        RestClient mRestClient = new RestClient();
-        Call<ResponseDto<String>> responseBodyCall = mRestClient.getRectService().publishMoving(partList,movingdto);
-        responseBodyCall.enqueue(new Callback<ResponseDto<String>>() {
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),new Gson().toJson(movingdto));
+        Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().publishMoving(partList.get(0),body);
+        responseBodyCall.enqueue(new Callback<ResponseDto>() {
             @Override
-            public void onResponse(Call<ResponseDto<String>> call, Response<ResponseDto<String>> response) {
-                ResponseDto<String> message = response.body();
+            public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {
+                ResponseDto message = response.body();
                 if (message.getSuccess() == true) {
                     Toast.makeText(MyApplication.getInstance(), "success", Toast.LENGTH_SHORT).show();
                 } else {
@@ -109,7 +102,7 @@ public class PublishMovingActivity extends AppCompatActivity implements View.OnC
             }
 
             @Override
-            public void onFailure(Call<ResponseDto<String>> call, Throwable t) {
+            public void onFailure(Call<ResponseDto> call, Throwable t) {
             }
         });
     }
@@ -122,6 +115,7 @@ public class PublishMovingActivity extends AppCompatActivity implements View.OnC
                 break;
             case R.id.sure:
                 publishMoving();
+                break;
             case R.id.select:
                 Intent intent = new Intent(PublishMovingActivity.this,AlbumsActivity.class);
                 startActivity(intent);
