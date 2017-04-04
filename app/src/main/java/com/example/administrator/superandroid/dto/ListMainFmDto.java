@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class ListMainFmDto {
     private List<String> listName;
-    private List<Drawable> listIcon;
+    private List<Integer> listIcon;
 
 
     public List<String> getListName() {
@@ -20,11 +20,11 @@ public class ListMainFmDto {
         this.listName = listName;
     }
 
-    public List<Drawable> getListIcon() {
+    public List<Integer> getListIcon() {
         return listIcon;
     }
 
-    public void setListIcon(List<Drawable> listIcon) {
+    public void setListIcon(List<Integer> listIcon) {
         this.listIcon = listIcon;
     }
 }

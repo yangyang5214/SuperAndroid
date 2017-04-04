@@ -21,67 +21,59 @@ import java.util.List;
  * Created by Administrator on 2017/3/25.
  */
 public class GridAdapter extends BaseAdapter {
-    private List<String> mNameList = new ArrayList<String>();
-    private List<Drawable> mDrawableList = new ArrayList<Drawable>();
-    private LayoutInflater mInflater;
     private Context mContext;
-    LinearLayout.LayoutParams params;
+    private List<String> listName;
+    private List<Integer> listIcon;
 
-    public GridAdapter(Context context, List<String> nameList, List<Drawable> drawableList) {
-        mNameList = nameList;
-        mDrawableList = drawableList;
-        mContext = context;
-        mInflater = LayoutInflater.from(context);
 
-        params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.gravity = Gravity.CENTER;
+
+    public GridAdapter(Context mContext,List<String> listName,List<Integer> listIcon) {
+        super();
+        this.listName = listName;
+        this.listIcon = listIcon;
+        this.mContext = mContext;
     }
 
+    @Override
     public int getCount() {
-        return mNameList.size();
+        // TODO Auto-generated method stub
+        return listName.size();
     }
 
+    @Override
     public Object getItem(int position) {
-        return mNameList.get(position);
-    }
-
-    public long getItemId(int position) {
+        // TODO Auto-generated method stub
         return position;
     }
 
+    @Override
+    public long getItemId(int position) {
+        // TODO Auto-generated method stub
+        return position;
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ItemViewTag viewTag;
+        ViewHolder viewHolder = null;
+        if (convertView == null) {
+            convertView = LayoutInflater.from(mContext).inflate(
+                    R.layout.grid_view_item, parent, false);
+            viewHolder = new ViewHolder();
+            viewHolder.textView = (TextView) convertView.findViewById(R.id.tv_item);
+            viewHolder.imageView = (ImageView) convertView.findViewById(R.id.iv_item);
 
-        if (convertView == null)
-        {
-            convertView = mInflater.inflate(R.layout.layout_gridview_item, null);
-
-            // construct an item tag
-            viewTag = new ItemViewTag((ImageView) convertView.findViewById(R.id.grid_icon), (TextView) convertView.findViewById(R.id.grid_name));
-            convertView.setTag(viewTag);
-        } else
-        {
-            viewTag = (ItemViewTag) convertView.getTag();
+            convertView.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
-
-        // set name
-        viewTag.mName.setText(mNameList.get(position));
-
-        // set icon
-        viewTag.mIcon.setBackgroundDrawable(mDrawableList.get(position));
-        viewTag.mIcon.setLayoutParams(params);
+        viewHolder.imageView.setBackgroundResource(listIcon.get(position));
+        viewHolder.textView.setText(listName.get(position));
         return convertView;
     }
 
-    class ItemViewTag
-    {
-        protected ImageView mIcon;
-        protected TextView mName;
-
-        public ItemViewTag(ImageView icon, TextView name)
-        {
-            this.mName = name;
-            this.mIcon = icon;
-        }
+    class ViewHolder {
+        TextView textView;
+        ImageView imageView;
     }
+
 }

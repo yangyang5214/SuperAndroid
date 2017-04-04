@@ -1,6 +1,7 @@
 package com.example.administrator.superandroid.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +22,7 @@ public class ListAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<String> listName;
-    private List<Drawable> listIcon;
+    private List<Integer> listIcon;
     private List<ListMainFmDto> listModels;
 
     public ListAdapter(Context mContext, List<ListMainFmDto> listModels ) {
