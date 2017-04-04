@@ -16,14 +16,13 @@ import okhttp3.RequestBody;
 public class ImageUtil {
 
     //File转化成MultipartBody.Part
-    public static List<MultipartBody.Part> filesToMultipartBodyParts(List<String> filePaths) {
-        List<MultipartBody.Part> parts = new ArrayList<>(filePaths.size());
-        for (String filePath : filePaths) {
-            File file = new File(filePath);
-            // TODO: 16-4-2  这里为了简单起见，没有判断file的类型
-            RequestBody requestBody = RequestBody.create(MediaType.parse("image/jpg"), file);
-            MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
-            parts.add(part);
+    public static MultipartBody.Part[] filesToMultipartBodyParts(List<String> filePaths) {
+        MultipartBody.Part[] parts = new MultipartBody.Part[filePaths.size()];
+        for (int i = 0;i < filePaths.size();i++){
+            File file = new File(filePaths.get(i));
+            RequestBody requestBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+            MultipartBody.Part part = MultipartBody.Part.createFormData("files", file.getName(), requestBody);
+            parts[i] = part;
         }
         return parts;
     }

@@ -19,12 +19,17 @@ import com.example.administrator.superandroid.intent.RetrofitClient;
 import com.example.administrator.superandroid.util.ImageUtil;
 import com.google.gson.Gson;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -77,19 +82,15 @@ public class PublishMovingActivity extends AppCompatActivity implements View.OnC
 
 
     private void publishMoving() {
-        MovingDto movingdto = new MovingDto();
-        movingdto.setUserId("1");
-        movingdto.setContent("1234556");
-        List<MultipartBody.Part> partList = new ArrayList<>();
         filePaths = new ArrayList<>();
+        MultipartBody.Part[] parts = null;
         if (arrayList.size()!=0){
             for (PhotoUpImageItem photoUpImageItem : arrayList) {
                 filePaths.add(photoUpImageItem.getImagePath());
             }
+            parts = ImageUtil.filesToMultipartBodyParts(filePaths);
         }
-        partList = ImageUtil.filesToMultipartBodyParts(filePaths);
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),new Gson().toJson(movingdto));
-        Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().publishMoving(partList.get(0),body);
+        Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().publishMoving(parts,"1","12323313");
         responseBodyCall.enqueue(new Callback<ResponseDto>() {
             @Override
             public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {

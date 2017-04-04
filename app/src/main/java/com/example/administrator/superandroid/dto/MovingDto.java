@@ -1,5 +1,8 @@
 package com.example.administrator.superandroid.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Administrator on 2017/3/11.
  */
@@ -14,14 +17,45 @@ public class MovingDto {
     private String userName;
     private String avatarUrl;//头像
 
-    private Integer movingType;
+    private int movingType;
 
-    public int getMovingType() {
-        return movingType;
+    private List<CommentDto> listComment = new ArrayList<>();
+
+    public MovingDto() {
     }
-    public void setMovingType(Integer movingType) {
-        this.movingType = movingType;
+
+    public String getContent() {
+        return content;
     }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getPublishTime() {
+        return publishTime;
+    }
+
+    public void setPublishTime(String publishTime) {
+        this.publishTime = publishTime;
+    }
+
     public String getUserId() {
         return userId;
     }
@@ -46,35 +80,19 @@ public class MovingDto {
         this.avatarUrl = avatarUrl;
     }
 
-    public String getContent() {
-        return content;
+    public int getMovingType() {
+        return movingType;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public void setMovingType(int movingType) {
+        this.movingType = movingType;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public List<CommentDto> getListComment() {
+        return listComment;
     }
 
-    public String getPublishTime() {
-        return publishTime;
-    }
-
-    public void setPublishTime(String publishTime) {
-        this.publishTime = publishTime;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
+    public void setListComment(List<CommentDto> listComment) {
+        this.listComment = listComment;
     }
 }
