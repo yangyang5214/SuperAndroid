@@ -34,24 +34,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity">
-
-        </activity>
+        <activity android:name=".activity.LoginActivity"></activity>
         <activity android:name=".activity.PublishMovingActivity" />
-        <activity android:name=".activity.RegisteredByEmailActivity"></activity>
-        <activity android:name=".activity.RegisteredByPhoneActivity">
-        </activity>
-
-        <activity android:name=".activity.AlbumsActivity"/>
-        <activity android:name=".activity.AlbumItemActivity"/>
-        <activity android:name=".view.GridImage"/>
-
-
+        <activity android:name=".activity.RegisteredByEmailActivity" />
+        <activity android:name=".activity.RegisteredByPhoneActivity"></activity>
+        <activity android:name=".activity.AlbumsActivity" />
+        <activity android:name=".activity.AlbumItemActivity" />
+        <activity android:name=".view.GridImage" />
         <activity
             android:name="com.mob.tools.MobUIShell"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="stateHidden|adjustResize"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".activity.UniversityActivity"></activity>
     </application>
 
 </manifest>

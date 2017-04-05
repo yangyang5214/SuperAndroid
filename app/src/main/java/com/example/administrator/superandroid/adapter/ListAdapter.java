@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 
 import com.example.administrator.superandroid.R;
+import com.example.administrator.superandroid.activity.UniversityActivity;
 import com.example.administrator.superandroid.dto.ListMainFmDto;
 import com.example.administrator.superandroid.view.SuperScrollView;
 import com.example.expressdelivery.activity.CompanyActivity;
@@ -71,7 +72,8 @@ public class ListAdapter extends BaseAdapter implements AdapterView.OnItemClickL
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         switch (i){
             case 0:
-                Toast.makeText(mContext,"0",Toast.LENGTH_SHORT).show();
+                Intent universityIntent = new Intent(mContext.getApplicationContext(), UniversityActivity.class);
+                mContext.startActivity(universityIntent);
                 break;
             case 1:
                 Toast.makeText(mContext,"1",Toast.LENGTH_SHORT).show();

@@ -2,10 +2,13 @@ package com.example.administrator.superandroid.fragment;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.expressdelivery.MyApplication;
@@ -21,6 +24,8 @@ import java.util.List;
 
 public class MainFragment extends BaseFragment {
 
+    private Toolbar mToolBar;
+    private TextView mTitleText;
     private List<String> listName;
     private List<Integer> listIcon;
     private SharedPreferences sharedPreferences;
@@ -29,23 +34,23 @@ public class MainFragment extends BaseFragment {
         sharedPreferences = this.getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);
         listName = new ArrayList<>();
         listIcon = new ArrayList<>();
-        listName.add("转账");
+        listName.add("学校简介");
         listName.add("余额宝");
         listName.add("手机充值");
         listName.add("信用卡还款");
         listName.add("淘宝电影");
-        listName.add("彩票");
-        listName.add("当面付");
-        listName.add("亲密付");
+        listName.add("论坛");
+        listName.add("一卡通");
+        listName.add("二手市场");
         listName.add("快递");
-        listIcon.add(R.drawable.app_transfer);
+        listIcon.add(R.drawable.university);
         listIcon.add(R.drawable.app_fund);
         listIcon.add(R.drawable.app_phonecharge);
         listIcon.add(R.drawable.app_creditcard);
         listIcon.add(R.drawable.app_movie);
-        listIcon.add(R.drawable.app_lottery);
-        listIcon.add(R.drawable.app_facepay);
-        listIcon.add(R.drawable.app_close);
+        listIcon.add(R.drawable.luntan);
+        listIcon.add(R.drawable.yikatong);
+        listIcon.add(R.drawable.secondhand);
         listIcon.add(R.drawable.kuaidi);
     }
 
@@ -53,6 +58,7 @@ public class MainFragment extends BaseFragment {
     public View initView(LayoutInflater inflater) {
         view = inflater.inflate(R.layout.fragment_main, null);
         initData();
+//        initToolBar();
         final ParallaxListView plv = (ParallaxListView) view.findViewById(R.id.plv);
         View mHeaderView = View.inflate(getContext(), R.layout.layout_list_header, null);
         mHeaderView.setOnClickListener(new View.OnClickListener() {
@@ -78,4 +84,17 @@ public class MainFragment extends BaseFragment {
         plv.setAdapter(new ListAdapter(getContext(),listModels));
         return view;
     }
+
+
+//    /**
+//     * 加载ToolBar
+//     */
+//    private void initToolBar() {
+//        mToolBar = (Toolbar) view.findViewById(R.id.toolbar);
+//        mTitleText = (TextView) view.findViewById(R.id.title_content);
+//        mTitleText.setText("");
+//        mToolBar.setTitle("八一农大");
+//        mToolBar.setTitleTextColor(Color.parseColor("#FFFFFF"));
+//        setSupportActionBar(mToolBar);
+//    }
 }
