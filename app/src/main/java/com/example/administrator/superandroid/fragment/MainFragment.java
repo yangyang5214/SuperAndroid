@@ -38,7 +38,7 @@ public class MainFragment extends BaseFragment {
         listName.add("余额宝");
         listName.add("手机充值");
         listName.add("信用卡还款");
-        listName.add("淘宝电影");
+        listName.add("校园地图");
         listName.add("论坛");
         listName.add("一卡通");
         listName.add("二手市场");
@@ -47,7 +47,7 @@ public class MainFragment extends BaseFragment {
         listIcon.add(R.drawable.app_fund);
         listIcon.add(R.drawable.app_phonecharge);
         listIcon.add(R.drawable.app_creditcard);
-        listIcon.add(R.drawable.app_movie);
+        listIcon.add(R.drawable.map);
         listIcon.add(R.drawable.luntan);
         listIcon.add(R.drawable.yikatong);
         listIcon.add(R.drawable.secondhand);
