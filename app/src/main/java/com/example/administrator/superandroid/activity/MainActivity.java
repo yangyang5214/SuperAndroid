@@ -33,11 +33,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        initToolBar();
         initView();
         initData();
     }
 
 
+    /**
+     * 加载ToolBar
+     */
+    private void initToolBar() {
+        mToolBar = (Toolbar) findViewById(R.id.toolbar);
+        mTitleText = (TextView) findViewById(R.id.title_content);
+        mTitleText.setText(R.string.app_name);
+        mToolBar.setTitle("");
+        setSupportActionBar(mToolBar);
+    }
     private void initData() {
         listFragment = new ArrayList<>();
         listFragment.add(new MainFragment());
