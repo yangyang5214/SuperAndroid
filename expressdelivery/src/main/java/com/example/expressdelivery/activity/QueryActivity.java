@@ -8,13 +8,11 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ListView;
 
 import com.android.volley.VolleyError;
 import com.example.expressdelivery.R;
-import com.example.expressdelivery.adapter.SuggestionAdapter;
 import com.example.expressdelivery.entity.CompanyEntity;
 import com.example.expressdelivery.entity.Extras;
 import com.example.expressdelivery.entity.RequestCode;
@@ -34,121 +32,55 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class QueryActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, TextWatcher {
+public class QueryActivity extends AppCompatActivity {
 
     private EditText etPostId;
-    private ListView lvSuggestion;
-    private Map<String, CompanyEntity> mCompanyMap = new HashMap<>();
-    private List<CompanyEntity> mSuggestionList = new ArrayList<>();
-    private SuggestionAdapter mSuggestionAdapter = new SuggestionAdapter(mSuggestionList);
+    private EditText etCompanyId;
+    private Button mButtonSelect;
+    private Button mButtonQuery;
+    private SearchInfo searchInfo = new SearchInfo();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query);
-        readCompany();
         initView();
-        lvSuggestion.setAdapter(mSuggestionAdapter);
     }
 
     private void initView() {
+        mButtonSelect = (Button) findViewById(R.id.select_company);
+        mButtonQuery = (Button) findViewById(R.id.query_company);
         etPostId = (EditText) findViewById(R.id.et_post_id);
-        lvSuggestion = (ListView) findViewById(R.id.lv_suggestion);
-        etPostId = (EditText) findViewById(R.id.et_post_id);
-        lvSuggestion.setOnItemClickListener(this);
-        etPostId.addTextChangedListener(this);
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-    }
-
-    @Override
-    public void afterTextChanged(final Editable s) {
-        mSuggestionList.clear();
-        mSuggestionAdapter.notifyDataSetChanged();
-        if (s.length() >= 8) {
-            getSuggestion(s.toString());
-        }
-    }
-
-    private void getSuggestion(final String postId) {
-        HttpClient.getSuggestion(postId, new HttpCallback<SuggestionResult>() {
+        etCompanyId = (EditText) findViewById(R.id.et_company_id);
+        mButtonSelect.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(SuggestionResult suggestionResult) {
-                if (!TextUtils.equals(etPostId.getText().toString(), postId)) {
-                    return;
-                }
-                onSuggestion(suggestionResult);
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CompanyActivity.class);
+                startActivityForResult(intent,RequestCode.REQUEST_COMPANY);
             }
-
+        });
+        mButtonQuery.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onError(VolleyError volleyError) {
-                if (!TextUtils.equals(etPostId.getText().toString(), postId)) {
-                    return;
-                }
-                onSuggestion(null);
+            public void onClick(View v) {
+                searchInfo.setPost_id(etPostId.getText().toString());
+                searchInfo.setCode(searchInfo.getCode());
+                searchInfo.setName(searchInfo.getName());
+                searchInfo.setLogo(searchInfo.getLogo());
+                Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+                intent.putExtra(Extras.SEARCH_INFO, searchInfo);
+                startActivity(intent);
             }
         });
     }
 
-    private void onSuggestion(SuggestionResult response) {
-        mSuggestionList.clear();
-        if (response != null && response.getAuto() != null && !response.getAuto().isEmpty()) {
-            for (SuggestionResult.AutoBean bean : response.getAuto()) {
-                if (mCompanyMap.containsKey(bean.getComCode())) {
-                    mSuggestionList.add(mCompanyMap.get(bean.getComCode()));
-                }
-            }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode) { //resultCode为回传的标记，我在B中回传的是RESULT_OK
+            case RESULT_OK:
+                Bundle bundle=data.getExtras();//data为B中回传的Intent
+                searchInfo = (SearchInfo) bundle.getSerializable(Extras.SEARCH_INFO);
+                etCompanyId.setText(searchInfo.getName());
+                break;
+            default:
+                break;
         }
-        String label = "<font color='%1$s'>没有查到？</font> <font color='%2$s'>请选择快递公司</font>";
-        String grey = String.format("#%06X", 0xFFFFFF & getResources().getColor(R.color.grey));
-        String blue = String.format("#%06X", 0xFFFFFF & getResources().getColor(R.color.blue));
-        CompanyEntity companyEntity = new CompanyEntity();
-        companyEntity.setName(String.format(label, grey, blue));
-        mSuggestionList.add(companyEntity);
-        mSuggestionAdapter.notifyDataSetChanged();
-    }
-
-    private void readCompany() {
-        try {
-            InputStream is = getAssets().open("company.json");
-            int size = is.available();
-            byte[] buffer = new byte[size];
-            is.read(buffer);
-            is.close();
-            String json = new String(buffer);
-
-            Gson gson = new Gson();
-            JsonParser parser = new JsonParser();
-            JsonArray jArray = parser.parse(json).getAsJsonArray();
-            for (JsonElement obj : jArray) {
-                CompanyEntity company = gson.fromJson(obj, CompanyEntity.class);
-                if (!TextUtils.isEmpty(company.getCode())) {
-                    mCompanyMap.put(company.getCode(), company);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        if (position == mSuggestionList.size() - 1) {
-            startActivityForResult(new Intent(this, CompanyActivity.class), RequestCode.REQUEST_COMPANY);
-            return;
-        }
-        SearchInfo searchInfo = new SearchInfo();
-        searchInfo.setPost_id(etPostId.getText().toString());
-        searchInfo.setCode(mSuggestionList.get(position).getCode());
-        searchInfo.setName(mSuggestionList.get(position).getName());
-        searchInfo.setLogo(mSuggestionList.get(position).getLogo());
-        Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
-        intent.putExtra(Extras.SEARCH_INFO, searchInfo);
-        startActivity(intent);
     }
 }

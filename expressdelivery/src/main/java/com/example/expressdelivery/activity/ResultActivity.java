@@ -75,7 +75,6 @@ public class ResultActivity extends AppCompatActivity{
             tvSearching.setVisibility(View.GONE);
             lvResultList.setAdapter(new ResultAdapter(searchResult));
             mSearchInfo.setIs_check(searchResult.getIscheck());
-//            DataManager.getInstance().updateHistory(mSearchInfo);
         } else {
             llResult.setVisibility(View.GONE);
             llNoExist.setVisibility(View.VISIBLE);

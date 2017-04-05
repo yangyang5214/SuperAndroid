@@ -50,10 +50,66 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider_height" />
 
-    <ListView
-        android:id="@+id/lv_suggestion"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="快递公司"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_common" />
+
+        <EditText
+        android:id="@+id/et_company_id"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:dividerHeight="@dimen/divider_height"
-        android:footerDividersEnabled="true" />
+        android:layout_weight="3"
+        android:background="@android:color/transparent"
+        android:hint="@string/input_company_id"
+        android:inputType="textEmailAddress"
+        android:singleLine="true"
+        android:textCursorDrawable="@null"
+        android:textSize="15sp" />
+        <Button
+            android:id="@+id/select_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择"
+            android:background="@color/yellow"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_common" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/query_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="查询"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+
 </LinearLayout>
