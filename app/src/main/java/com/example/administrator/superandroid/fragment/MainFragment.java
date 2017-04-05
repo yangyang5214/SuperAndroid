@@ -1,18 +1,14 @@
 package com.example.administrator.superandroid.fragment;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.administrator.superandroid.MyApplication;
+import com.example.expressdelivery.MyApplication;
 import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.adapter.ListAdapter;
 import com.example.administrator.superandroid.base.BaseFragment;
@@ -41,7 +37,7 @@ public class MainFragment extends BaseFragment {
         listName.add("彩票");
         listName.add("当面付");
         listName.add("亲密付");
-        listName.add("机票");
+        listName.add("快递");
         listIcon.add(R.drawable.app_transfer);
         listIcon.add(R.drawable.app_fund);
         listIcon.add(R.drawable.app_phonecharge);
@@ -50,7 +46,7 @@ public class MainFragment extends BaseFragment {
         listIcon.add(R.drawable.app_lottery);
         listIcon.add(R.drawable.app_facepay);
         listIcon.add(R.drawable.app_close);
-        listIcon.add(R.drawable.app_plane);
+        listIcon.add(R.drawable.kuaidi);
     }
 
     @Override

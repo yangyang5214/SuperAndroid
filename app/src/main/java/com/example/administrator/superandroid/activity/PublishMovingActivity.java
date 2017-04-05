@@ -9,27 +9,18 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.administrator.superandroid.MyApplication;
+import com.example.expressdelivery.MyApplication;
 import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.adapter.SelectedImagesAdapter;
-import com.example.administrator.superandroid.dto.MovingDto;
 import com.example.administrator.superandroid.dto.PhotoUpImageItem;
 import com.example.administrator.superandroid.dto.ResponseDto;
 import com.example.administrator.superandroid.intent.RetrofitClient;
 import com.example.administrator.superandroid.util.ImageUtil;
-import com.google.gson.Gson;
 
-import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

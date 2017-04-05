@@ -42,4 +42,6 @@ dependencies {
     compile name: 'SMSSDKGUI-2.1.4', ext: 'aar'
     compile files('libs/universal-image-loader-1.8.6-with-sources.jar')
     compile 'com.google.code.gson:gson:2.8.0'
+    compile project(':expressdelivery')
+    compile 'net.sourceforge.javaocr.plugins:javaocr-plugin-fir:1.0'
 }

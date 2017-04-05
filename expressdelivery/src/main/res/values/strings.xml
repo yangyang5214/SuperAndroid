@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ExpressDelivery</string>
+    <string name="input_post_id">请输入运单号</string>
+    <string name="remark">运单备注</string>
+</resources>
