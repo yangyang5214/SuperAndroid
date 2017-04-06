@@ -19,6 +19,7 @@ public class RegisteredByEmailActivity extends AppCompatActivity implements View
     private EditText mEditCode;
     private EditText mEditPassword;
     private Button mbutCommit;
+    private String email;
 
     private String code;
 
@@ -68,6 +69,7 @@ public class RegisteredByEmailActivity extends AppCompatActivity implements View
     }
 
     private void sendCode() {
-
+        String code = StringUtil.getRandomString(4);
+        email = mEditEmail.getText().toString();
     }
 }
