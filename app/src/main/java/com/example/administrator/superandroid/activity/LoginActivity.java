@@ -44,8 +44,16 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initView();
+        if(isLogin()){
+            intentMain();
+        }
         login();
 
+    }
+
+    private boolean isLogin() {
+        sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("username","").length() !=0;
     }
 
     private void initView() {
@@ -70,11 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                         ResponseDto<UserDto> userDto = response.body();
                         if (userDto.getSuccess() == true) {
                             saveUserMeaasge(userDto.getObj());
-                            Intent mIntent = new Intent(getApplicationContext(), MainActivity.class);
-                            Bundle mBundle = new Bundle();
-                            mBundle.putSerializable("userDto", userDto);
-                            mIntent.putExtras(mBundle);
-                            startActivity(mIntent);
+                            intentMain();
                             finish();
                         } else {
                             Toast.makeText(getApplicationContext(), userDto.getMessage(), Toast.LENGTH_SHORT).show();
@@ -90,9 +94,14 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    public void  intentMain(){
+        Intent mIntent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(mIntent);
+    }
+
     public void saveUserMeaasge(UserDto userDto){
-        SharedPreferences sp = getSharedPreferences("UserData", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
+        sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("username", username);
         editor.putString("password", password);
         editor.putString("nickName", userDto.getNickName());
