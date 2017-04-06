@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.activity.LibraryActivity;
+import com.example.administrator.superandroid.activity.MapActivity;
+import com.example.administrator.superandroid.activity.NoticeActivity;
 import com.example.administrator.superandroid.activity.SchoolCalendarActivity;
 import com.example.administrator.superandroid.activity.UniversityActivity;
 import com.example.administrator.superandroid.dto.ListMainFmDto;
@@ -78,24 +80,26 @@ public class ListAdapter extends BaseAdapter implements AdapterView.OnItemClickL
                 mContext.startActivity(universityIntent);
                 break;
             case 1:
-                Intent schoolIntent = new Intent(mContext.getApplicationContext(), SchoolCalendarActivity.class);
-                mContext.startActivity(schoolIntent);
+                Intent noticeIntent = new Intent(mContext.getApplicationContext(), NoticeActivity.class);
+                mContext.startActivity(noticeIntent);
                 break;
             case 2:
+                Intent schoolCalendarIntent = new Intent(mContext.getApplicationContext(), SchoolCalendarActivity.class);
+                mContext.startActivity(schoolCalendarIntent);
+                break;
+            case 3:
                 Intent libraryIntent = new Intent(mContext.getApplicationContext(), LibraryActivity.class);
                 mContext.startActivity(libraryIntent);
                 break;
-            case 3:
-                Toast.makeText(mContext,"3",Toast.LENGTH_SHORT).show();
-                break;
             case 4:
-                Toast.makeText(mContext,"4",Toast.LENGTH_SHORT).show();
+                Intent mapIntent = new Intent(mContext.getApplicationContext(), MapActivity.class);
+                mContext.startActivity(mapIntent);
                 break;
             case 5:
-                Toast.makeText(mContext,"5",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"4",Toast.LENGTH_SHORT).show();
                 break;
             case 6:
-                Toast.makeText(mContext,"6",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,"5",Toast.LENGTH_SHORT).show();
                 break;
             case 7:
                 Toast.makeText(mContext,"7",Toast.LENGTH_SHORT).show();
