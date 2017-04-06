@@ -1,5 +1,7 @@
 package com.example.administrator.superandroid;
 
+import com.example.administrator.superandroid.util.StringUtil;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -11,5 +13,10 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
+    }
+
+    @Test
+    public  void getRandomString(){
+        System.out.println(StringUtil.getRandomString(4));
     }
 }

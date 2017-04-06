@@ -43,12 +43,12 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/et_phoneNum"
+                android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:background="@null"
-                android:hint="请输入手机号"
+                android:hint="请输入邮箱"
                 android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
