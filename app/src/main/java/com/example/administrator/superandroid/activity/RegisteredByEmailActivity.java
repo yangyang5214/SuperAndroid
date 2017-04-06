@@ -9,9 +9,16 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.administrator.superandroid.R;
+import com.example.administrator.superandroid.dto.ResponseDto;
+import com.example.administrator.superandroid.intent.RetrofitClient;
 import com.example.administrator.superandroid.util.CodeUtil;
 import com.example.administrator.superandroid.util.ConfigUtil;
 import com.example.administrator.superandroid.util.StringUtil;
+import com.example.expressdelivery.MyApplication;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisteredByEmailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,7 +27,6 @@ public class RegisteredByEmailActivity extends AppCompatActivity implements View
     private EditText mEditPassword;
     private Button mbutCommit;
     private String email;
-
     private String code;
 
     @Override
@@ -40,6 +46,18 @@ public class RegisteredByEmailActivity extends AppCompatActivity implements View
 
         mbutCommit.setOnClickListener(this);
         mEditCode.setOnClickListener(this);
+        mEditCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus && mEditCode.getTextSize() > 0){
+                    if (!code.equals(mEditCode.getText().toString())){
+                        Toast.makeText(getApplicationContext(), ConfigUtil.getValueByKey(getApplicationContext(),"code.error"), Toast.LENGTH_SHORT).show();
+                    }else{
+                        mEditPassword.setFocusable(true);
+                    }
+                }
+            }
+        });
         mEditEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -69,7 +87,18 @@ public class RegisteredByEmailActivity extends AppCompatActivity implements View
     }
 
     private void sendCode() {
-        String code = StringUtil.getRandomString(4);
+        code = StringUtil.getRandomString(4);
         email = mEditEmail.getText().toString();
+        Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().registerForCode(code,email);
+        responseBodyCall.enqueue(new Callback<ResponseDto>() {
+            @Override
+            public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseDto> call, Throwable t) {
+            }
+        });
     }
 }

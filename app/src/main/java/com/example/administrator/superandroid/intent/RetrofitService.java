@@ -30,6 +30,9 @@ public interface RetrofitService {
     @GET("/user/record/login")
     Call<ResponseDto<UserDto>> login(@Query("username") String username, @Query("password") String password);
 
+    @GET("/user/register/code")
+    Call<ResponseDto> registerForCode(@Query("code") String code, @Query("email") String email);
+
     @Multipart
     @POST("/moving/publish")
     Call<ResponseDto> publishMoving(
