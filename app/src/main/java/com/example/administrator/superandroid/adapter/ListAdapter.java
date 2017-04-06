@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 
 import com.example.administrator.superandroid.R;
+import com.example.administrator.superandroid.activity.LibraryActivity;
+import com.example.administrator.superandroid.activity.SchoolCalendarActivity;
 import com.example.administrator.superandroid.activity.UniversityActivity;
 import com.example.administrator.superandroid.dto.ListMainFmDto;
 import com.example.administrator.superandroid.view.SuperScrollView;
@@ -76,10 +78,12 @@ public class ListAdapter extends BaseAdapter implements AdapterView.OnItemClickL
                 mContext.startActivity(universityIntent);
                 break;
             case 1:
-                Toast.makeText(mContext,"1",Toast.LENGTH_SHORT).show();
+                Intent schoolIntent = new Intent(mContext.getApplicationContext(), SchoolCalendarActivity.class);
+                mContext.startActivity(schoolIntent);
                 break;
             case 2:
-                Toast.makeText(mContext,"2",Toast.LENGTH_SHORT).show();
+                Intent libraryIntent = new Intent(mContext.getApplicationContext(), LibraryActivity.class);
+                mContext.startActivity(libraryIntent);
                 break;
             case 3:
                 Toast.makeText(mContext,"3",Toast.LENGTH_SHORT).show();

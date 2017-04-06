@@ -35,8 +35,8 @@ public class MainFragment extends BaseFragment {
         listName = new ArrayList<>();
         listIcon = new ArrayList<>();
         listName.add("学校简介");
-        listName.add("余额宝");
-        listName.add("手机充值");
+        listName.add("校历");
+        listName.add("图书馆");
         listName.add("信用卡还款");
         listName.add("校园地图");
         listName.add("论坛");
@@ -44,8 +44,8 @@ public class MainFragment extends BaseFragment {
         listName.add("二手市场");
         listName.add("快递");
         listIcon.add(R.drawable.university);
-        listIcon.add(R.drawable.app_fund);
-        listIcon.add(R.drawable.app_phonecharge);
+        listIcon.add(R.drawable.xiaoli);
+        listIcon.add(R.drawable.library);
         listIcon.add(R.drawable.app_creditcard);
         listIcon.add(R.drawable.map);
         listIcon.add(R.drawable.luntan);
