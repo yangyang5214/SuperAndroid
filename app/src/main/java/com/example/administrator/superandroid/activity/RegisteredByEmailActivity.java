@@ -45,9 +45,6 @@ public class RegisteredByEmailActivity extends AppCompatActivity implements View
         mEditEmail = (EditText) findViewById(R.id.et_email);
         mEditCode = (EditText) findViewById(R.id.et_code);
         mEditPassword = (EditText) findViewById(R.id.et_password);
-
-        code = CodeUtil.getInstance().getCode().toLowerCase();
-
         mbutCommit.setOnClickListener(this);
         mEditCode.setOnClickListener(this);
         mEditCode.setOnFocusChangeListener(new View.OnFocusChangeListener() {
