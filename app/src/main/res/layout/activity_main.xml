@@ -8,7 +8,7 @@
 
 
 
-    <include layout="@layout/toolbar" />
+    <!--<include layout="@layout/toolbar" />-->
 
     <com.example.administrator.superandroid.view.NoScrollView
         android:id="@+id/view_pager"

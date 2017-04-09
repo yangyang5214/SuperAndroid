@@ -9,10 +9,10 @@
         android:id="@+id/tab_FindFragment_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/titleBlue"
+        android:background="@color/white"
         app:tabIndicatorColor="@color/yellow"
-        app:tabSelectedTextColor="@color/gray"
-        app:tabTextColor="@color/yellow"
+        app:tabSelectedTextColor="@color/black"
+        app:tabTextColor="@color/gray"
         />
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_FindFragment_pager"

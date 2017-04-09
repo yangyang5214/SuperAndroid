@@ -1,6 +1,7 @@
 package com.example.administrator.superandroid.fragment.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.superandroid.activity.MapActivity;
 import com.example.expressdelivery.MyApplication;
 import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.adapter.ListAdapter;
@@ -28,8 +30,6 @@ import java.util.List;
 
 public class MainFragment extends BaseFragment {
 
-    private Toolbar mToolBar;
-    private TextView mTitleText;
     private List<String> listName;
     private List<Integer> listIcon;
     private SharedPreferences sharedPreferences;
@@ -87,5 +87,4 @@ public class MainFragment extends BaseFragment {
         plv.setAdapter(new ListAdapter(getContext(),listModels));
         return view;
     }
-
 }

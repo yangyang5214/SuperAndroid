@@ -12,11 +12,14 @@ import android.widget.Toast;
 
 import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.activity.LibraryActivity;
+import com.example.administrator.superandroid.activity.MainActivity;
 import com.example.administrator.superandroid.activity.MapActivity;
 import com.example.administrator.superandroid.activity.NoticeActivity;
 import com.example.administrator.superandroid.activity.SchoolCalendarActivity;
 import com.example.administrator.superandroid.activity.UniversityActivity;
 import com.example.administrator.superandroid.dto.ListMainFmDto;
+import com.example.administrator.superandroid.fragment.find.MovingFragment;
+import com.example.administrator.superandroid.fragment.main.FindFragment;
 import com.example.administrator.superandroid.view.SuperScrollView;
 import com.example.expressdelivery.activity.CompanyActivity;
 import com.example.expressdelivery.activity.QueryActivity;
@@ -32,12 +35,13 @@ public class ListAdapter extends BaseAdapter implements AdapterView.OnItemClickL
     private List<String> listName;
     private List<Integer> listIcon;
     private List<ListMainFmDto> listModels;
+    private MainActivity mainActivity;
 
-    public ListAdapter(Context mContext, List<ListMainFmDto> listModels ) {
+    public ListAdapter(Context mContext, List<ListMainFmDto> listModels) {
         this.mContext = mContext;
         this.listIcon = listModels.get(0).getListIcon();
         this.listName = listModels.get(0).getListName();
-        this.listModels =listModels;
+        this.listModels = listModels;
     }
 
     @Override
@@ -74,7 +78,7 @@ public class ListAdapter extends BaseAdapter implements AdapterView.OnItemClickL
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        switch (i){
+        switch (i) {
             case 0:
                 Intent universityIntent = new Intent(mContext.getApplicationContext(), UniversityActivity.class);
                 mContext.startActivity(universityIntent);
@@ -96,13 +100,12 @@ public class ListAdapter extends BaseAdapter implements AdapterView.OnItemClickL
                 mContext.startActivity(mapIntent);
                 break;
             case 5:
-                Toast.makeText(mContext,"4",Toast.LENGTH_SHORT).show();
                 break;
             case 6:
-                Toast.makeText(mContext,"5",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "5", Toast.LENGTH_SHORT).show();
                 break;
             case 7:
-                Toast.makeText(mContext,"7",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "7", Toast.LENGTH_SHORT).show();
                 break;
             case 8:
                 Intent intent = new Intent(mContext.getApplicationContext(), QueryActivity.class);
