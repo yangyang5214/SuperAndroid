@@ -2,8 +2,12 @@ package com.example.administrator.superandroid.activity;
 
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
+import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.adapter.BeautyRecycleAdapter;
 
 import java.util.ArrayList;

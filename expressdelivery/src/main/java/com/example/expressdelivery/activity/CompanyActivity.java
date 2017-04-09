@@ -1,5 +1,6 @@
 package com.example.expressdelivery.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -26,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CompanyActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, IndexBar.OnIndexChangedListener{
+public class CompanyActivity extends Activity implements AdapterView.OnItemClickListener, IndexBar.OnIndexChangedListener{
 
 
     private ListView lvCompany;
