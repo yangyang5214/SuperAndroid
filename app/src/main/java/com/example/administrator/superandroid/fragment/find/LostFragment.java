@@ -13,8 +13,6 @@ public class LostFragment extends BaseFragment {
 
     }
 
-
-
     @Override
     public View initView(LayoutInflater inflater) {
         view = inflater.inflate(R.layout.fragment_lost, null);

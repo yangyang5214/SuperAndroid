@@ -20,10 +20,12 @@ import java.util.List;
  */
 public class BeautyRecycleAdapter extends RecyclerView.Adapter<BeautyRecycleAdapter.BeautyView>{
     private List<String> imageUrls;
+    private List<String> textContent;
     private Context context;
-    public BeautyRecycleAdapter(List<String> imageUrls,Context context) {
+    public BeautyRecycleAdapter(List<String> imageUrls,List<String> textContent,Context context) {
         this.imageUrls = imageUrls;
         this.context = context;
+        this.textContent = textContent;
     }
 
     @Override
@@ -39,6 +41,7 @@ public class BeautyRecycleAdapter extends RecyclerView.Adapter<BeautyRecycleAdap
                 .dontAnimate()
                 .placeholder(R.drawable.image_defult_error)
                 .into(holder.imageView);
+        holder.textView.setText(textContent.get(position));
     }
 
     @Override
@@ -49,9 +52,11 @@ public class BeautyRecycleAdapter extends RecyclerView.Adapter<BeautyRecycleAdap
 
     public static class BeautyView extends  RecyclerView.ViewHolder{
         ImageView imageView;
+        TextView textView;
         public BeautyView(View itemView){
             super(itemView);
             imageView= (ImageView) itemView.findViewById(R.id.recycle_item_img );
+            textView = (TextView) itemView.findViewById(R.id.recycle_item_text);
         }
 
     }

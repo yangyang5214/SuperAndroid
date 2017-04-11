@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.administrator.superandroid.adapter.FindFragmentAdapter;
+import com.example.administrator.superandroid.fragment.find.BeautyFragment;
 import com.example.administrator.superandroid.fragment.find.CommunityFragment;
 import com.example.administrator.superandroid.fragment.find.JobFragment;
 import com.example.administrator.superandroid.fragment.find.LostFragment;
@@ -41,6 +42,7 @@ public class FindFragment extends BaseFragment {
     private CommunityFragment communityFragment;
     private JobFragment jobFragment;
     private LostFragment lostFragment;
+    private BeautyFragment beautyFragment;
 
     public void initData() {
 
@@ -69,18 +71,21 @@ public class FindFragment extends BaseFragment {
         communityFragment = new CommunityFragment();
         jobFragment = new JobFragment();
         lostFragment = new LostFragment();
+        beautyFragment = new BeautyFragment();
 
         //将fragment装进列表中
         listFragment = new ArrayList<>();
-        listFragment.add(movingFragment);
         listFragment.add(communityFragment);
+        listFragment.add(beautyFragment);
+        listFragment.add(movingFragment);
         listFragment.add(jobFragment);
         listFragment.add(lostFragment);
 
         //将名称加载tab名字列表，正常情况下，我们应该在values/arrays.xml中进行定义然后调用
         listTitle = new ArrayList<>();
-        listTitle.add("动态");
         listTitle.add("社团");
+        listTitle.add("校园");
+        listTitle.add("动态");
         listTitle.add("工作");
         listTitle.add("失物");
 
@@ -91,6 +96,7 @@ public class FindFragment extends BaseFragment {
         tabFindFragmentTitle.addTab(tabFindFragmentTitle.newTab().setText(listTitle.get(1)));
         tabFindFragmentTitle.addTab(tabFindFragmentTitle.newTab().setText(listTitle.get(2)));
         tabFindFragmentTitle.addTab(tabFindFragmentTitle.newTab().setText(listTitle.get(3)));
+        tabFindFragmentTitle.addTab(tabFindFragmentTitle.newTab().setText(listTitle.get(4)));
 
         findAdapter = new FindFragmentAdapter(getActivity().getSupportFragmentManager(), listFragment, listTitle);
 
