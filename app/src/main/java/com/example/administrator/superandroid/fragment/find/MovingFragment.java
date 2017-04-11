@@ -10,17 +10,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.administrator.superandroid.R;
-import com.example.administrator.superandroid.activity.BeautyActivity;
-import com.example.administrator.superandroid.activity.LoginActivity;
-import com.example.administrator.superandroid.adapter.BeautyRecycleAdapter;
 import com.example.administrator.superandroid.adapter.MovingRecycleAdapter;
 import com.example.administrator.superandroid.base.BaseFragment;
 import com.example.administrator.superandroid.dto.ListResponseDto;
 import com.example.administrator.superandroid.dto.MovingDto;
-import com.example.administrator.superandroid.dto.ResponseDto;
-import com.example.administrator.superandroid.dto.UserDto;
 import com.example.administrator.superandroid.intent.RetrofitClient;
-import com.example.expressdelivery.MyApplication;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +31,6 @@ public class MovingFragment extends BaseFragment {
     private List<MovingDto> movingDtos;
 
     public void initData() {
-        movingDtos = new ArrayList<>();
         movingDtos = new ArrayList<>();
         Call<ListResponseDto<MovingDto>> responseBodyCall = RetrofitClient.getClient().getListMoving(20, 1);
         responseBodyCall.enqueue(new Callback<ListResponseDto<MovingDto>>() {
