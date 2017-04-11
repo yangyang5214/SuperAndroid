@@ -41,5 +41,6 @@ dependencies {
     compile project(':expressdelivery')
     compile 'net.sourceforge.javaocr.plugins:javaocr-plugin-fir:1.0'
     compile 'com.android.support:design:25.3.1'
+    compile 'com.getbase:floatingactionbutton:1.10.1'
 
 }
