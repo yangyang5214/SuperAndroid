@@ -46,5 +46,8 @@ public interface RetrofitService {
     );
 
     @GET("/find/beauty/allBeauty")
-    Call<ResponseDto<BeautyDto>> getListBeauty(@Query("size") String size, @Query("offset") String offset);
+    Call<ResponseDto<BeautyDto>> getListBeauty(@Query("size") int size, @Query("offset") int offset);
+
+    @GET("/find/moving/allMoving")
+    Call<ResponseDto<MovingDto>> getListMoving(@Query("size") int size, @Query("offset") int offset);
 }

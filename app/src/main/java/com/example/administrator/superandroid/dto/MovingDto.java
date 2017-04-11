@@ -10,7 +10,7 @@ public class MovingDto {
 
     private String content;
     private String position;
-    private String imageUrl;
+    private List<String> imageUrls = new ArrayList<>();
     private String publishTime;
 
     private String userId;
@@ -40,12 +40,12 @@ public class MovingDto {
         this.position = position;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public List<String> getImageUrls() {
+        return imageUrls;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImageUrls(List<String> imageUrls) {
+        this.imageUrls = imageUrls;
     }
 
     public String getPublishTime() {
