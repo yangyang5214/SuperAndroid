@@ -2,6 +2,7 @@ package com.example.administrator.superandroid.intent;
 
 
 import com.example.administrator.superandroid.dto.BeautyDto;
+import com.example.administrator.superandroid.dto.ListResponseDto;
 import com.example.administrator.superandroid.dto.MovingDto;
 import com.example.administrator.superandroid.dto.ResponseDto;
 import com.example.administrator.superandroid.dto.UserDto;
@@ -49,5 +50,5 @@ public interface RetrofitService {
     Call<ResponseDto<BeautyDto>> getListBeauty(@Query("size") int size, @Query("offset") int offset);
 
     @GET("/find/moving/allMoving")
-    Call<ResponseDto<MovingDto>> getListMoving(@Query("size") int size, @Query("offset") int offset);
+    Call<ListResponseDto<MovingDto>> getListMoving(@Query("size") int size, @Query("offset") int offset);
 }

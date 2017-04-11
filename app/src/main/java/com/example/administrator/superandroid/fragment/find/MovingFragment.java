@@ -15,6 +15,7 @@ import com.example.administrator.superandroid.activity.LoginActivity;
 import com.example.administrator.superandroid.adapter.BeautyRecycleAdapter;
 import com.example.administrator.superandroid.adapter.MovingRecycleAdapter;
 import com.example.administrator.superandroid.base.BaseFragment;
+import com.example.administrator.superandroid.dto.ListResponseDto;
 import com.example.administrator.superandroid.dto.MovingDto;
 import com.example.administrator.superandroid.dto.ResponseDto;
 import com.example.administrator.superandroid.dto.UserDto;
@@ -37,16 +38,16 @@ public class MovingFragment extends BaseFragment {
     public void initData() {
         movingDtos = new ArrayList<>();
         movingDtos = new ArrayList<>();
-        Call<ResponseDto<MovingDto>> responseBodyCall = RetrofitClient.getClient().getListMoving(20, 1);
-        responseBodyCall.enqueue(new Callback<ResponseDto<MovingDto>>() {
+        Call<ListResponseDto<MovingDto>> responseBodyCall = RetrofitClient.getClient().getListMoving(20, 1);
+        responseBodyCall.enqueue(new Callback<ListResponseDto<MovingDto>>() {
             @Override
-            public void onResponse(Call<ResponseDto<MovingDto>> call, Response<ResponseDto<MovingDto>> response) {
-                ResponseDto<MovingDto> message = response.body();
-                movingDtos = (List<MovingDto>) message.getObj();
+            public void onResponse(Call<ListResponseDto<MovingDto>> call, Response<ListResponseDto<MovingDto>> response) {
+                ListResponseDto<MovingDto> message = response.body();
+                movingDtos = message.getObjs();
             }
 
             @Override
-            public void onFailure(Call<ResponseDto<MovingDto>> call, Throwable t) {
+            public void onFailure(Call<ListResponseDto<MovingDto>> call, Throwable t) {
             }
         });
     }
