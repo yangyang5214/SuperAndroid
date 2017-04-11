@@ -1,13 +1,16 @@
 package com.example.administrator.superandroid.fragment.main;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.administrator.superandroid.adapter.FindFragmentAdapter;
 import com.example.administrator.superandroid.fragment.find.CommunityFragment;
@@ -19,6 +22,7 @@ import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.activity.PublishMovingActivity;
 import com.example.administrator.superandroid.base.BaseFragment;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +45,7 @@ public class FindFragment extends BaseFragment {
     public void initData() {
 
     }
+
     @Override
     public View initView(LayoutInflater inflater) {
         view = inflater.inflate(R.layout.fragment_find, null);
@@ -51,12 +56,13 @@ public class FindFragment extends BaseFragment {
 
     /**
      * 初始化各控件
+     *
      * @param view
      */
     private void initControls(View view) {
 
-        tabFindFragmentTitle = (TabLayout)view.findViewById(R.id.tab_FindFragment_title);
-        vpFindFragmentPager = (ViewPager)view.findViewById(R.id.vp_FindFragment_pager);
+        tabFindFragmentTitle = (TabLayout) view.findViewById(R.id.tab_FindFragment_title);
+        vpFindFragmentPager = (ViewPager) view.findViewById(R.id.vp_FindFragment_pager);
 
         //初始化各fragment
         movingFragment = new MovingFragment();
@@ -86,7 +92,7 @@ public class FindFragment extends BaseFragment {
         tabFindFragmentTitle.addTab(tabFindFragmentTitle.newTab().setText(listTitle.get(2)));
         tabFindFragmentTitle.addTab(tabFindFragmentTitle.newTab().setText(listTitle.get(3)));
 
-        findAdapter = new FindFragmentAdapter(getActivity().getSupportFragmentManager(),listFragment,listTitle);
+        findAdapter = new FindFragmentAdapter(getActivity().getSupportFragmentManager(), listFragment, listTitle);
 
         //viewpager加载adapter
         vpFindFragmentPager.setAdapter(findAdapter);

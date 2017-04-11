@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tab_FindFragment_title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:tabIndicatorColor="@color/yellow"
-        app:tabSelectedTextColor="@color/black"
-        app:tabTextColor="@color/gray"
-        />
+        android:orientation="horizontal"
+        >
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_FindFragment_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:tabIndicatorColor="@color/red"
+            app:tabSelectedTextColor="@color/red"
+            app:tabTextColor="@color/black" />
+    </LinearLayout>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_FindFragment_pager"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        />
-
-    <com.getbase.floatingactionbutton.FloatingActionsMenu
-        android:id="@+id/fab_menu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/activity_horizontal_margin"
-        fab:fab_addButtonColorNormal="@color/colorAccent"
-        fab:fab_icon="@drawable/ic_add_24dp"
-        fab:fab_labelStyle="@style/menu_labels_style"
-        fab:fab_labelsPosition="left"/>
-
+        android:layout_weight="1" />
 </LinearLayout>
