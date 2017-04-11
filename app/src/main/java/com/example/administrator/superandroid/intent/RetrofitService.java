@@ -1,6 +1,7 @@
 package com.example.administrator.superandroid.intent;
 
 
+import com.example.administrator.superandroid.dto.BeautyDto;
 import com.example.administrator.superandroid.dto.MovingDto;
 import com.example.administrator.superandroid.dto.ResponseDto;
 import com.example.administrator.superandroid.dto.UserDto;
@@ -43,4 +44,7 @@ public interface RetrofitService {
             @Query("userId") String userId,
             @Query("content") String content
     );
+
+    @GET("/find/beauty/allBeauty")
+    Call<ResponseDto<BeautyDto>> getListBeauty(@Query("size") String size, @Query("offset") String offset);
 }
