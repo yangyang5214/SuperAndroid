@@ -10,6 +10,7 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
 import android.content.Context;
 import android.graphics.Bitmap.Config;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,8 +65,15 @@ public class SelectedImagesAdapter extends BaseAdapter {
 		}else {
 			holder = (Holder) convertView.getTag();
 		}
-		imageLoader.displayImage("file://"+arrayList.get(position).getImagePath(), holder.imageView,
-				options);
+		if (position == arrayList.size()) {
+			holder.imageView.setImageResource(R.drawable.moving_show_add_image);
+			if (position == 9) {
+				holder.imageView.setVisibility(View.GONE);
+			}
+		} else {
+			imageLoader.displayImage("file://"+arrayList.get(position).getImagePath(), holder.imageView,
+					options);
+		}
 		return convertView;
 	}
 	class Holder{

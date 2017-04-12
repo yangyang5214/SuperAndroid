@@ -109,8 +109,8 @@ public class PublishMovingActivity extends AppCompatActivity implements View.OnC
                 publishMoving();
                 break;
             case R.id.select:
-                Intent intent = new Intent(PublishMovingActivity.this,AlbumsActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(PublishMovingActivity.this,AlbumsActivity.class);
+//                startActivity(intent);
                 break;
         }
     }

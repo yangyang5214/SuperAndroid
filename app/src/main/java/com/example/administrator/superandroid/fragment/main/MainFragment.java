@@ -1,22 +1,13 @@
 package com.example.administrator.superandroid.fragment.main;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.administrator.superandroid.activity.MapActivity;
 import com.example.expressdelivery.MyApplication;
 import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.adapter.ListAdapter;

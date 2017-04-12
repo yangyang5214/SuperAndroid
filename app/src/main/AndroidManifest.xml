@@ -34,21 +34,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity">
-
-        </activity>
+        <activity android:name=".activity.LoginActivity"></activity>
         <activity android:name=".activity.PublishMovingActivity" />
-        <activity android:name=".activity.RegisteredByEmailActivity">
+        <activity android:name=".activity.RegisteredByEmailActivity"></activity>
 
-        </activity>
-        <activity android:name=".activity.AlbumsActivity" />
-        <activity android:name=".activity.AlbumItemActivity" />
+        <activity android:name=".activity.AlbumActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.GalleryActivity" />
+        <activity android:name=".activity.ShowAllPhoto" />
+        <activity android:name=".activity.ImageFile" />
         <activity android:name=".view.GridImage" />
-        <activity android:name=".activity.UniversityActivity" />
-        <activity android:name=".activity.LibraryActivity" />
-        <activity android:name=".activity.SchoolCalendarActivity" />
-        <activity android:name=".activity.MapActivity" />
-        <activity android:name=".activity.NoticeActivity"></activity>
+
+        <activity android:name=".activity.main.UniversityActivity" />
+        <activity android:name=".activity.main.LibraryActivity" />
+        <activity android:name=".activity.main.SchoolCalendarActivity" />
+        <activity android:name=".activity.main.MapActivity" />
+        <activity android:name=".activity.NoticeActivity" />
+        <activity android:name=".activity.publish.BeautyPublishActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

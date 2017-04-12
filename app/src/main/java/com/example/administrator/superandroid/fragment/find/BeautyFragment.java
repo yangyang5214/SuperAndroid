@@ -1,5 +1,6 @@
 package com.example.administrator.superandroid.fragment.find;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -9,9 +10,11 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.administrator.superandroid.R;
+import com.example.administrator.superandroid.activity.publish.BeautyPublishActivity;
 import com.example.administrator.superandroid.adapter.BeautyRecycleAdapter;
 import com.example.administrator.superandroid.base.BaseFragment;
 import com.example.administrator.superandroid.dto.BeautyDto;
@@ -36,6 +39,16 @@ public class BeautyFragment extends BaseFragment {
     private BeautyRecycleAdapter adapter;
     private int offset = 1;
     private int size = 20;
+    private ImageView beautyPublish;
+
+
+    @Override
+    public View initView(LayoutInflater inflater) {
+        view = inflater.inflate(R.layout.activity_beauty, null);
+        initView();
+        refresh();
+        return view;
+    }
 
     public void initMovingData() {
         Call<List<BeautyDto>> responseBodyCall = RetrofitClient.getClient().getListBeauty(size, offset);
@@ -127,13 +140,7 @@ public class BeautyFragment extends BaseFragment {
         initMovingData();
     }
 
-    @Override
-    public View initView(LayoutInflater inflater) {
-        view = inflater.inflate(R.layout.activity_beauty, null);
-        initView();
-        refresh();
-        return view;
-    }
+
 
     public void refresh() {
         final SwipeRefreshView swipeRefreshView = (SwipeRefreshView) view.findViewById(R.id.swipeLayout);
@@ -157,7 +164,14 @@ public class BeautyFragment extends BaseFragment {
 
     private void initView() {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-
+        beautyPublish = (ImageView) view.findViewById(R.id.beauty_publish);
+        beautyPublish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), BeautyPublishActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

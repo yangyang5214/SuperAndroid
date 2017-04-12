@@ -11,17 +11,14 @@ import android.widget.Toast;
 
 
 import com.example.administrator.superandroid.R;
-import com.example.administrator.superandroid.activity.LibraryActivity;
+import com.example.administrator.superandroid.activity.main.LibraryActivity;
 import com.example.administrator.superandroid.activity.MainActivity;
-import com.example.administrator.superandroid.activity.MapActivity;
+import com.example.administrator.superandroid.activity.main.MapActivity;
 import com.example.administrator.superandroid.activity.NoticeActivity;
-import com.example.administrator.superandroid.activity.SchoolCalendarActivity;
-import com.example.administrator.superandroid.activity.UniversityActivity;
+import com.example.administrator.superandroid.activity.main.SchoolCalendarActivity;
+import com.example.administrator.superandroid.activity.main.UniversityActivity;
 import com.example.administrator.superandroid.dto.ListMainFmDto;
-import com.example.administrator.superandroid.fragment.find.MovingFragment;
-import com.example.administrator.superandroid.fragment.main.FindFragment;
 import com.example.administrator.superandroid.view.SuperScrollView;
-import com.example.expressdelivery.activity.CompanyActivity;
 import com.example.expressdelivery.activity.QueryActivity;
 
 import java.util.List;

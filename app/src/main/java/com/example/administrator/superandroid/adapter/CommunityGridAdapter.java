@@ -65,7 +65,7 @@ public class CommunityGridAdapter extends BaseAdapter {
         Glide.with(mContext)
                 .load(imageUrls.get(position))
                 .dontAnimate()
-                .placeholder(R.drawable.image_defult)
+                .placeholder(R.drawable.image_defult_error)
                 .into(viewHolder.imageView);
         viewHolder.textView.setText(textContent.get(position));
         return convertView;
