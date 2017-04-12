@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -40,24 +39,20 @@ import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.activity.AlbumActivity;
 import com.example.administrator.superandroid.activity.GalleryActivity;
 import com.example.administrator.superandroid.dto.ImageItem;
+import com.example.administrator.superandroid.dto.ResponseDto;
 import com.example.administrator.superandroid.intent.RetrofitClient;
-import com.example.administrator.superandroid.intent.RetrofitService;
+import com.example.administrator.superandroid.util.ImageUtil;
 import com.example.administrator.superandroid.view.Bimp;
-import com.google.gson.Gson;
+import com.example.expressdelivery.MyApplication;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,10 +65,12 @@ public class BeautyPublishActivity extends AppCompatActivity {
     private PopupWindow pop = null;
     private LinearLayout ll_popup;
     private static final int TAKE_PICTURE = 0x000001;
-    private EditText titleEdit;
     private EditText contentEdit;
-    private List<String> imageList = null;//动态图片的集合
+    private List<String> imageList;//动态图片的集合
     private ProgressDialog mProgressDialog;
+
+    private String content;
+    private String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,16 +126,12 @@ public class BeautyPublishActivity extends AppCompatActivity {
                 showNormalDialog();
                 break;
             case R.id.show_moving:
-                showMoving();
+                publishMoving();
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    //发表说说
-    private void showMoving() {
-
-    }
 
 
     public void finishActivity() {
@@ -267,6 +260,39 @@ public class BeautyPublishActivity extends AppCompatActivity {
         }
     }
 
+    private void publishMoving() {
+        userid = "";
+        content = contentEdit.getText().toString();
+        if (content.length() > 15){
+            Toast.makeText(MyApplication.getInstance(), "话那么多干嘛", Toast.LENGTH_SHORT).show();
+        }else{
+            imageList = new ArrayList<>();
+            MultipartBody.Part[] parts = null;
+            if (imageList.size()!=0){
+                parts = ImageUtil.filesToMultipartBodyParts(imageList);
+            }
+            mProgressDialog = ProgressDialog.show(this, null, "图片上传中...", true, false);
+            mProgressDialog.setCancelable(true);
+            Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().publishMoving(parts,userid,content,0);
+            responseBodyCall.enqueue(new Callback<ResponseDto>() {
+                @Override
+                public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {
+                    ResponseDto message = response.body();
+                    if (message.getSuccess() == true) {
+                        Toast.makeText(MyApplication.getInstance(), "success", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(MyApplication.getInstance(), "error", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseDto> call, Throwable t) {
+                }
+            });
+        }
+
+    }
+
     @Override
     protected void onRestart() {
         adapter.update();
@@ -325,7 +351,7 @@ public class BeautyPublishActivity extends AppCompatActivity {
             }
             if (i == Bimp.tempSelectBitmap.size()) {
                 holder.image.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.moving_show_add_image));
-                if (i == 9) {
+                if (i == 1) {
                     holder.image.setVisibility(View.GONE);
                 }
             } else {

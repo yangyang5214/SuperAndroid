@@ -96,7 +96,7 @@ public class ShowAllPhoto extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.recall:
+            case R.id.photos_recall:
                 //清空选择的图片
                 Bimp.tempSelectBitmap.clear();
                 finish();
@@ -109,7 +109,7 @@ public class ShowAllPhoto extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.moving_photo_sum_recall, menu);
+        inflater.inflate(R.menu.moving_photos_recall, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

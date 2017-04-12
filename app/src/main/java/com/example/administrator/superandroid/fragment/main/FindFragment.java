@@ -20,7 +20,6 @@ import com.example.administrator.superandroid.fragment.find.LostFragment;
 import com.example.administrator.superandroid.fragment.find.MovingFragment;
 import com.example.expressdelivery.MyApplication;
 import com.example.administrator.superandroid.R;
-import com.example.administrator.superandroid.activity.PublishMovingActivity;
 import com.example.administrator.superandroid.base.BaseFragment;
 
 import java.lang.reflect.Field;

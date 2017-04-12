@@ -52,7 +52,7 @@
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:background="#1EB9F2"
+            android:background="@color/red"
             android:gravity="center"
             android:layout_centerInParent="true"
             android:text="确定(0)"

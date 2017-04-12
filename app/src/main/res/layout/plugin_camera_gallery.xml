@@ -7,14 +7,12 @@
 
     <include layout="@layout/toolbar" />
 
-
-    <com.example.administrator.aijianshen.view.ViewPagerFixed
+    <com.example.administrator.superandroid.activity.ViewPagerFixed
         android:id="@+id/gallery01"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:unselectedAlpha="1">
-    </com.example.administrator.aijianshen.view.ViewPagerFixed>
+        android:unselectedAlpha="1"/>
 
 </LinearLayout>
   

@@ -44,7 +44,8 @@ public interface RetrofitService {
     Call<ResponseDto> publishMoving(
             @Part() MultipartBody.Part [] files,
             @Query("userId") String userId,
-            @Query("content") String content
+            @Query("content") String content,
+            @Query("type") int type
     );
 
     @GET("/find/moving/allMoving")

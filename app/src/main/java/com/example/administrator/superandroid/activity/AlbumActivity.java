@@ -87,7 +87,7 @@ public class AlbumActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.recall:
+            case R.id.photos_recall:
                 Bimp.tempSelectBitmap.clear();
                 finish();
                 break;
@@ -99,7 +99,7 @@ public class AlbumActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.moving_photo_sum_recall, menu);
+        inflater.inflate(R.menu.moving_photos_recall, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
