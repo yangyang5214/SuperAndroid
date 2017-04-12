@@ -33,9 +33,9 @@ public class MovingRecycleAdapter extends RecyclerView.Adapter<MovingRecycleAdap
 
     @Override
     public void onBindViewHolder(BeautyView holder, int position) {
-        if (movingDtos.get(position).getImageUrls().size() > 0){
+        if (movingDtos.get(position).getImageUrl().size() > 0){
             Glide.with(context)
-                    .load(movingDtos.get(position).getImageUrls().get(0))
+                    .load(movingDtos.get(position).getImageUrl().get(0))
                     .dontAnimate()
                     .placeholder(R.drawable.image_defult_error)
                     .into(holder.imageView);

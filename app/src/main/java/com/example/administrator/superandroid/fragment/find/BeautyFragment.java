@@ -3,8 +3,10 @@ package com.example.administrator.superandroid.fragment.find;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
@@ -12,151 +14,150 @@ import android.widget.Toast;
 import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.adapter.BeautyRecycleAdapter;
 import com.example.administrator.superandroid.base.BaseFragment;
+import com.example.administrator.superandroid.dto.BeautyDto;
+import com.example.administrator.superandroid.dto.MovingDto;
+import com.example.administrator.superandroid.intent.RetrofitClient;
 import com.example.administrator.superandroid.view.SwipeRefreshView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class BeautyFragment extends BaseFragment {
 
     private RecyclerView recyclerView;
-    private List<String> imageUrls;
-    private List<String> textContent;
+    private List<BeautyDto> beautyDtoList;
     private BeautyRecycleAdapter adapter;
+    private int offset = 1;
+    private int size = 20;
 
-    public void initData() {
-        imageUrls = new ArrayList<>();
-        imageUrls.add("http://img0.imgtn.bdimg.com/it/u=439462059,3529812351&fm=23&gp=0.jpg");
-        imageUrls.add("http://img0.imgtn.bdimg.com/it/u=439462059,3529812351&fm=23&gp=0.jpg");
-        imageUrls.add("http://img0.imgtn.bdimg.com/it/u=439462059,3529812351&fm=23&gp=0.jpg");
-        imageUrls.add("http://img0.imgtn.bdimg.com/it/u=439462059,3529812351&fm=23&gp=0.jpg");
-        imageUrls.add("http://img0.imgtn.bdimg.com/it/u=439462059,3529812351&fm=23&gp=0.jpg");
-        imageUrls.add("http://img0.imgtn.bdimg.com/it/u=439462059,3529812351&fm=23&gp=0.jpg");
-        imageUrls.add("http://img0.imgtn.bdimg.com/it/u=439462059,3529812351&fm=23&gp=0.jpg");
-        imageUrls.add("http://img0.imgtn.bdimg.com/it/u=439462059,3529812351&fm=23&gp=0.jpg");
-        imageUrls.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491415144300&di=8b0ef96214ef6a958671d79b6d06fde1&imgtype=0&src=http%3A%2F%2Fwww.bz55.com%2Fuploads%2Fallimg%2F150407%2F139-15040GZ046-50.jpg");
-        imageUrls.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491415144300&di=8b0ef96214ef6a958671d79b6d06fde1&imgtype=0&src=http%3A%2F%2Fwww.bz55.com%2Fuploads%2Fallimg%2F150407%2F139-15040GZ046-50.jpg");
-        imageUrls.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491415144300&di=8b0ef96214ef6a958671d79b6d06fde1&imgtype=0&src=http%3A%2F%2Fwww.bz55.com%2Fuploads%2Fallimg%2F150407%2F139-15040GZ046-50.jpg");
-        imageUrls.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491415144298&di=02cd8cf3f68365539fe4ad44cfb70e5f&imgtype=0&src=http%3A%2F%2Fwww.woyewan.com%2Fuploads%2F20120813%2Fmm%2F13213.jpg");
-        imageUrls.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491415144297&di=4ba48ef151a6a24e565fb9de032211a2&imgtype=0&src=http%3A%2F%2Ftitanimg.titan24.com%2Fgame%2F20120904%2Fbefbdec2c56ad3725360c2905a63347a.jpg");
-        imageUrls.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491415144297&di=4ba48ef151a6a24e565fb9de032211a2&imgtype=0&src=http%3A%2F%2Ftitanimg.titan24.com%2Fgame%2F20120904%2Fbefbdec2c56ad3725360c2905a63347a.jpg");
-        imageUrls.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491415144297&di=4ba48ef151a6a24e565fb9de032211a2&imgtype=0&src=http%3A%2F%2Ftitanimg.titan24.com%2Fgame%2F20120904%2Fbefbdec2c56ad3725360c2905a63347a.jpg");
-        imageUrls.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491415144297&di=4ba48ef151a6a24e565fb9de032211a2&imgtype=0&src=http%3A%2F%2Ftitanimg.titan24.com%2Fgame%2F20120904%2Fbefbdec2c56ad3725360c2905a63347a.jpg");
-        imageUrls.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491415144297&di=4ba48ef151a6a24e565fb9de032211a2&imgtype=0&src=http%3A%2F%2Ftitanimg.titan24.com%2Fgame%2F20120904%2Fbefbdec2c56ad3725360c2905a63347a.jpg");
-        imageUrls.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491415144293&di=f0da31772240d6033b1f5b295b1e0041&imgtype=0&src=http%3A%2F%2Fwww.bz55.com%2Fuploads%2Fallimg%2F110710%2F1209106325-6.jpg");
+    public void initMovingData() {
+        Call<List<BeautyDto>> responseBodyCall = RetrofitClient.getClient().getListBeauty(size, offset);
+        responseBodyCall.enqueue(new Callback<List<BeautyDto>>() {
+            @Override
+            public void onResponse(Call<List<BeautyDto>> call, Response<List<BeautyDto>> response) {
+                List<BeautyDto> result = response.body();
+                if (result.size() == 0){
+                    Toast.makeText(getContext(),"到底啦....",Toast.LENGTH_LONG).show();
+                }
+                if (beautyDtoList.size() == 0) {
+                    beautyDtoList = result;
+                    setAdapter();
+                } else {
+                    beautyDtoList.addAll(result);
+                    adapter.notifyDataSetChanged();
+                }
 
-        textContent = new ArrayList<>();
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
-        textContent.add("hello");
+            }
+
+            @Override
+            public void onFailure(Call<List<BeautyDto>> call, Throwable t) {
+            }
+        });
     }
 
+    private void setAdapter() {
+        //设置layoutManager
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
 
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            //用来标记是否正在向最后一个滑动，既是否向下滑动
+            boolean isSlidingToLast = false;
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                StaggeredGridLayoutManager manager = (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
+                // 当不滚动时
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    //获取最后一个完全显示的ItemPosition
+                    int[] lastVisiblePositions = manager.findLastVisibleItemPositions(new int[manager.getSpanCount()]);
+                    int lastVisiblePos = getMaxElem(lastVisiblePositions);
+                    int totalItemCount = manager.getItemCount();
+
+                    // 判断是否滚动到底部
+                    if (lastVisiblePos == (totalItemCount - 1) && isSlidingToLast) {
+                        //加载更多功能的代码
+                        offset = offset + 1;
+                        initMovingData();
+                    }
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                //dx用来判断横向滑动方向，dy用来判断纵向滑动方向
+                if (dy > 0) {
+                    //大于0表示，正在向下滚动
+                    isSlidingToLast = true;
+                } else {
+                    //小于等于0 表示停止或向上滚动
+                    isSlidingToLast = false;
+                }
+            }
+        });
+        //设置适配器
+        adapter = new BeautyRecycleAdapter(beautyDtoList, getContext());
+        recyclerView.setAdapter(adapter);
+        //设置item之间的间隔
+        SpacesItemDecoration decoration = new SpacesItemDecoration(10);
+        recyclerView.addItemDecoration(decoration);
+    }
+
+    private int getMaxElem(int[] arr) {
+        int size = arr.length;
+        int maxVal = Integer.MIN_VALUE;
+        for (int i = 0; i < size; i++) {
+            if (arr[i] > maxVal)
+                maxVal = arr[i];
+        }
+        return maxVal;
+    }
+
+    @Override
+    public void initData() {
+        beautyDtoList = new ArrayList<>();
+        initMovingData();
+    }
 
     @Override
     public View initView(LayoutInflater inflater) {
         view = inflater.inflate(R.layout.activity_beauty, null);
         initView();
-        initData();
-        //设置layoutManager
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-        //设置适配器
-        adapter=new BeautyRecycleAdapter(imageUrls,textContent,getContext());
-        recyclerView.setAdapter(adapter);
-        //设置item之间的间隔
-        SpacesItemDecoration decoration=new SpacesItemDecoration(16);
-        recyclerView.addItemDecoration(decoration);
+        refresh();
         return view;
     }
 
-    private void initView() {
+    public void refresh() {
         final SwipeRefreshView swipeRefreshView = (SwipeRefreshView) view.findViewById(R.id.swipeLayout);
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
-
-        // 不能在onCreate中设置，这个表示当前是刷新状态，如果一进来就是刷新状态，SwipeRefreshLayout会屏蔽掉下拉事件
-        //swipeRefreshLayout.setRefreshing(true);
-
-        // 设置颜色属性的时候一定要注意是引用了资源文件还是直接设置16进制的颜色，因为都是int值容易搞混
-        // 设置下拉进度的背景颜色，默认就是白色的
         swipeRefreshView.setProgressBackgroundColorSchemeResource(android.R.color.white);
-        // 设置下拉进度的主题颜色
-        swipeRefreshView.setColorSchemeResources(R.color.colorAccent, R.color.colorPrimary, R.color.colorPrimaryDark);
-
-        // 下拉时触发SwipeRefreshLayout的下拉动画，动画完毕之后就会回调这个方法
+        swipeRefreshView.setColorSchemeResources(R.color.colorAccent, R.color.yellow, R.color.colorPrimaryDark);
         swipeRefreshView.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-
-                // 开始刷新，设置当前为刷新状态
-                //swipeRefreshLayout.setRefreshing(true);
-
-                // 这里是主线程
-                // 一些比较耗时的操作，比如联网获取数据，需要放到子线程去执行
-                // TODO 获取数据
                 final Random random = new Random();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        textContent.add("hello hello");
-                        imageUrls.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491842862574&di=a38c6a01645cada0367e9897c9d6fb2b&imgtype=0&src=http%3A%2F%2Fpic.3h3.com%2Fup%2F2017-3%2F2017325123219552650.jpg");
-                        adapter.notifyDataSetChanged();
-
-                        Toast.makeText(getContext(), "刷新了一条数据", Toast.LENGTH_SHORT).show();
-
-                        // 加载完数据设置为不刷新状态，将下拉进度收起来
+                        beautyDtoList.clear();
+                        initMovingData();
                         swipeRefreshView.setRefreshing(false);
                     }
                 }, 1200);
-
-                // System.out.println(Thread.currentThread().getName());
-
-                // 这个不能写在外边，不然会直接收起来
-                //swipeRefreshLayout.setRefreshing(false);
             }
         });
+    }
 
+    private void initView() {
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
 
-        // 设置下拉加载更多
-        swipeRefreshView.setOnLoadListener(new SwipeRefreshView.OnLoadListener() {
-            @Override
-            public void onLoad() {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        // 添加数据
-                        for (int i = 30; i < 35; i++) {
-                            textContent.add("hello hello");
-                            imageUrls.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1491842862574&di=a38c6a01645cada0367e9897c9d6fb2b&imgtype=0&src=http%3A%2F%2Fpic.3h3.com%2Fup%2F2017-3%2F2017325123219552650.jpg");
-                            // 这里要放在里面刷新，放在外面会导致刷新的进度条卡住
-                            adapter.notifyDataSetChanged();
-                        }
-
-                        Toast.makeText(getContext(), "加载了" + 5 + "条数据", Toast.LENGTH_SHORT).show();
-
-                        // 加载完数据设置为不加载状态，将加载进度收起来
-                        swipeRefreshView.setLoading(false);
-                    }
-                }, 1200);
-            }
-        });
     }
 
 
@@ -165,16 +166,16 @@ public class BeautyFragment extends BaseFragment {
         private int space;
 
         public SpacesItemDecoration(int space) {
-            this.space=space;
+            this.space = space;
         }
 
         @Override
         public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-            outRect.left=space;
-            outRect.right=space;
-            outRect.bottom=space;
-            if(parent.getChildAdapterPosition(view)==0){
-                outRect.top=space;
+            outRect.left = space;
+            outRect.right = space;
+            outRect.bottom = space;
+            if (parent.getChildAdapterPosition(view) == 0) {
+                outRect.top = space;
             }
         }
     }

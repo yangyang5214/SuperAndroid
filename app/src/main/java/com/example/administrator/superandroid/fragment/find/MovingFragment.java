@@ -7,11 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.adapter.MovingRecycleAdapter;
 import com.example.administrator.superandroid.base.BaseFragment;
+import com.example.administrator.superandroid.dto.ListMovingDto;
 import com.example.administrator.superandroid.dto.ListResponseDto;
 import com.example.administrator.superandroid.dto.MovingDto;
 import com.example.administrator.superandroid.intent.RetrofitClient;
@@ -30,29 +30,8 @@ public class MovingFragment extends BaseFragment {
     private RecyclerView recyclerView;
     private List<MovingDto> movingDtos;
 
-    public void initData() {
-        movingDtos = new ArrayList<>();
-        Call<ListResponseDto<MovingDto>> responseBodyCall = RetrofitClient.getClient().getListMoving(20, 1);
-        responseBodyCall.enqueue(new Callback<ListResponseDto<MovingDto>>() {
-            @Override
-            public void onResponse(Call<ListResponseDto<MovingDto>> call, Response<ListResponseDto<MovingDto>> response) {
-                ListResponseDto<MovingDto> message = response.body();
-                movingDtos = message.getObjs();
-            }
 
-            @Override
-            public void onFailure(Call<ListResponseDto<MovingDto>> call, Throwable t) {
-            }
-        });
-    }
-
-
-
-    @Override
-    public View initView(LayoutInflater inflater) {
-        view = inflater.inflate(R.layout.fragment_moving, null);
-        initView();
-        initData();
+    public  void  setAdapter(){
         //设置layoutManager
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 1);
         gridLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -63,11 +42,35 @@ public class MovingFragment extends BaseFragment {
         //设置item之间的间隔
         MovingFragment.SpacesItemDecoration decoration=new MovingFragment.SpacesItemDecoration(16);
         recyclerView.addItemDecoration(decoration);
+    }
+
+
+    @Override
+    public void initData() {
+        Call<List<MovingDto>> responseBodyCall = RetrofitClient.getClient().getListMoving(20, 1);
+        responseBodyCall.enqueue(new Callback<List<MovingDto>>() {
+            @Override
+            public void onResponse(Call<List<MovingDto>> call, Response<List<MovingDto>> response) {
+                movingDtos = response.body();
+                setAdapter();
+            }
+
+            @Override
+            public void onFailure(Call<List<MovingDto>> call, Throwable t) {
+            }
+        });
+    }
+
+    @Override
+    public View initView(LayoutInflater inflater) {
+        view = inflater.inflate(R.layout.fragment_moving, null);
+        initView();
         return view;
     }
 
     private void initView() {
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_moving);
+        movingDtos = new ArrayList<>();
     }
 
     public class SpacesItemDecoration extends RecyclerView.ItemDecoration {

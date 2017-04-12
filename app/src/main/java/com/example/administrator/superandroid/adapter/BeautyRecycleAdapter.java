@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.administrator.superandroid.R;
+import com.example.administrator.superandroid.dto.BeautyDto;
 import com.example.expressdelivery.util.HttpClient;
 
 import java.util.List;
@@ -19,13 +20,11 @@ import java.util.List;
  * Created by Administrator on 2017/4/5.
  */
 public class BeautyRecycleAdapter extends RecyclerView.Adapter<BeautyRecycleAdapter.BeautyView>{
-    private List<String> imageUrls;
-    private List<String> textContent;
+    private List<BeautyDto> beautyDtoList;
     private Context context;
-    public BeautyRecycleAdapter(List<String> imageUrls,List<String> textContent,Context context) {
-        this.imageUrls = imageUrls;
+    public BeautyRecycleAdapter(List<BeautyDto> beautyDtoList,Context context) {
+        this.beautyDtoList = beautyDtoList;
         this.context = context;
-        this.textContent = textContent;
     }
 
     @Override
@@ -37,16 +36,16 @@ public class BeautyRecycleAdapter extends RecyclerView.Adapter<BeautyRecycleAdap
     @Override
     public void onBindViewHolder(BeautyView holder, int position) {
         Glide.with(context)
-                .load(imageUrls.get(position))
+                .load(beautyDtoList.get(position).getImageUrl())
                 .dontAnimate()
                 .placeholder(R.drawable.image_defult_error)
                 .into(holder.imageView);
-        holder.textView.setText(textContent.get(position));
+        holder.textView.setText(beautyDtoList.get(position).getContent());
     }
 
     @Override
     public int getItemCount() {
-        return imageUrls.size();
+        return beautyDtoList.size();
     }
 
 
