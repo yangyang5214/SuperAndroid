@@ -7,7 +7,7 @@ import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.base.BaseFragment;
 
 
-public class LostFragment extends BaseFragment {
+public class MarketFragment extends BaseFragment {
 
     public void initData() {
 
@@ -15,7 +15,7 @@ public class LostFragment extends BaseFragment {
 
     @Override
     public View initView(LayoutInflater inflater) {
-        view = inflater.inflate(R.layout.fragment_lost, null);
+        view = inflater.inflate(R.layout.fragment_market, null);
         initData();
         return view;
     }

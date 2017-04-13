@@ -17,7 +17,7 @@ public class JobFragment extends BaseFragment {
 
     @Override
     public View initView(LayoutInflater inflater) {
-        view = inflater.inflate(R.layout.fragment_lost, null);
+        view = inflater.inflate(R.layout.fragment_market, null);
         initData();
         return view;
     }
