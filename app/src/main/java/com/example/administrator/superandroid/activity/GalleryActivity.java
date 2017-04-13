@@ -17,6 +17,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.TextView;
 
 import com.example.administrator.superandroid.R;
+import com.example.administrator.superandroid.adapter.ViewPageAdapter;
+import com.example.administrator.superandroid.adapter.ViewPagerFixed;
 import com.example.administrator.superandroid.view.Bimp;
 import com.example.administrator.superandroid.view.PhotoView;
 

@@ -2,8 +2,6 @@ package com.example.administrator.superandroid.intent;
 
 
 import com.example.administrator.superandroid.dto.BeautyDto;
-import com.example.administrator.superandroid.dto.ListMovingDto;
-import com.example.administrator.superandroid.dto.ListResponseDto;
 import com.example.administrator.superandroid.dto.MovingDto;
 import com.example.administrator.superandroid.dto.ResponseDto;
 import com.example.administrator.superandroid.dto.UserDto;
@@ -40,9 +38,9 @@ public interface RetrofitService {
     Call<ResponseDto> registerForCode(@Query("code") String code, @Query("email") String email);
 
     @Multipart
-    @POST("/moving/publish")
+    @POST("find/moving/publish")
     Call<ResponseDto> publishMoving(
-            @Part() MultipartBody.Part [] files,
+            @Part() List<MultipartBody.Part> files,
             @Query("userId") String userId,
             @Query("content") String content,
             @Query("type") int type

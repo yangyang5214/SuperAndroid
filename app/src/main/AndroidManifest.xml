@@ -35,10 +35,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.LoginActivity"></activity>
-        <activity android:name=".activity.PublishMovingActivity" />
         <activity android:name=".activity.RegisteredByEmailActivity"></activity>
 
-        <activity android:name=".activity.AlbumActivity" android:screenOrientation="portrait" />
+        <activity android:name=".activity.AlbumActivity"/>
         <activity android:name=".activity.GalleryActivity" />
         <activity android:name=".activity.ShowAllPhoto" />
         <activity android:name=".activity.ImageFile" />
@@ -50,11 +49,6 @@
         <activity android:name=".activity.main.MapActivity" />
         <activity android:name=".activity.NoticeActivity" />
         <activity android:name=".activity.publish.BeautyPublishActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

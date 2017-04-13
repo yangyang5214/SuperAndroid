@@ -194,7 +194,7 @@ public class AlbumActivity extends AppCompatActivity {
             okText.setPressed(true);
             preview.setClickable(true);
             okText.setClickable(true);
-            okText.setBackgroundResource(R.color.blue);
+            okText.setBackgroundResource(R.color.red);
             preview.setTextColor(Color.parseColor("#1EB9F2"));
         } else {
             okText.setText("完成" + "(" + Bimp.tempSelectBitmap.size() + ")");

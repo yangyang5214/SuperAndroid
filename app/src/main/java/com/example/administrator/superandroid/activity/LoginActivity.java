@@ -102,8 +102,9 @@ public class LoginActivity extends AppCompatActivity {
     public void saveUserMeaasge(UserDto userDto){
         sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("username", username);
-        editor.putString("password", password);
+        editor.putLong("userId", userDto.getUserId());
+        editor.putString("username", userDto.getUserName());
+        editor.putString("password", userDto.getPassWord());
         editor.putString("nickName", userDto.getNickName());
         editor.commit();
     }

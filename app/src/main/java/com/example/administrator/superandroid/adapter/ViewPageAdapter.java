@@ -1,4 +1,4 @@
-package com.example.administrator.superandroid.activity;
+package com.example.administrator.superandroid.adapter;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;

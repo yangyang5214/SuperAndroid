@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -68,7 +69,7 @@ public class BeautyPublishActivity extends AppCompatActivity {
     private EditText contentEdit;
     private List<String> imageList;//动态图片的集合
     private ProgressDialog mProgressDialog;
-
+    private SharedPreferences sharedPreferences;
     private String content;
     private String userid;
 
@@ -131,17 +132,6 @@ public class BeautyPublishActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
-
-
-    public void finishActivity() {
-        Bimp.tempSelectBitmap.clear();
-        Bundle bundle = new Bundle();
-        bundle.putString("datefrom", "1111111");
-        setResult(RESULT_CANCELED, this.getIntent().putExtras(bundle));
-        finish();
-    }
-
 
     //返回对话框
     private void showNormalDialog() {
@@ -261,27 +251,33 @@ public class BeautyPublishActivity extends AppCompatActivity {
     }
 
     private void publishMoving() {
-        userid = "";
+//        userid = sharedPreferences.getString("userId","");
+        userid = "1";
         content = contentEdit.getText().toString();
-        if (content.length() > 15){
+        if (content.length() > 15) {
             Toast.makeText(MyApplication.getInstance(), "话那么多干嘛", Toast.LENGTH_SHORT).show();
-        }else{
+        } else {
             imageList = new ArrayList<>();
-            MultipartBody.Part[] parts = null;
-            if (imageList.size()!=0){
+            for (int i = 0; i < Bimp.tempSelectBitmap.size(); i++) {
+                imageList.add(Bimp.tempSelectBitmap.get(i).imagePath);
+            }
+            List<MultipartBody.Part> parts = null;
+            if (imageList.size() != 0) {
                 parts = ImageUtil.filesToMultipartBodyParts(imageList);
             }
             mProgressDialog = ProgressDialog.show(this, null, "图片上传中...", true, false);
             mProgressDialog.setCancelable(true);
-            Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().publishMoving(parts,userid,content,0);
+            Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().publishMoving(parts, userid, content, 1);
             responseBodyCall.enqueue(new Callback<ResponseDto>() {
                 @Override
                 public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {
                     ResponseDto message = response.body();
                     if (message.getSuccess() == true) {
-                        Toast.makeText(MyApplication.getInstance(), "success", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(MyApplication.getInstance(), "error", Toast.LENGTH_SHORT).show();
+                        if (response.isSuccessful()) {
+                            mProgressDialog.dismiss();
+                            Bimp.tempSelectBitmap.clear();
+                            finish();
+                        }
                     }
                 }
 
@@ -351,7 +347,7 @@ public class BeautyPublishActivity extends AppCompatActivity {
             }
             if (i == Bimp.tempSelectBitmap.size()) {
                 holder.image.setImageBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.moving_show_add_image));
-                if (i == 1) {
+                if (i == 9) {
                     holder.image.setVisibility(View.GONE);
                 }
             } else {
