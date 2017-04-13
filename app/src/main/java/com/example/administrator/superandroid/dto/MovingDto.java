@@ -15,7 +15,7 @@ public class MovingDto {
     private String publishTime;
 
     private String userId;
-    private String userName;
+    private String userName; //昵称
     private String avatarUrl;//头像
 
     private Integer movingType;

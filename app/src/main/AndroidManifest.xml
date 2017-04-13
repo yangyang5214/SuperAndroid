@@ -34,22 +34,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity"></activity>
-        <activity android:name=".activity.RegisteredByEmailActivity"></activity>
-
-        <activity android:name=".activity.AlbumActivity"/>
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.RegisteredByEmailActivity" />
+        <activity android:name=".activity.AlbumActivity" />
         <activity android:name=".activity.GalleryActivity" />
         <activity android:name=".activity.ShowAllPhoto" />
         <activity android:name=".activity.ImageFile" />
         <activity android:name=".view.GridImage" />
-
         <activity android:name=".activity.main.UniversityActivity" />
         <activity android:name=".activity.main.LibraryActivity" />
         <activity android:name=".activity.main.SchoolCalendarActivity" />
         <activity android:name=".activity.main.MapActivity" />
         <activity android:name=".activity.NoticeActivity" />
-        <activity android:name=".activity.publish.BeautyPublishActivity">
-        </activity>
+        <activity android:name=".activity.publish.BeautyPublishActivity" />
+        <activity android:name=".activity.publish.MovingPublishActivity" />
+        <activity android:name=".activity.ShowImageDetailsActivity"></activity>
     </application>
 
 </manifest>

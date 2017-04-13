@@ -1,17 +1,25 @@
 package com.example.administrator.superandroid.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.administrator.superandroid.R;
+import com.example.administrator.superandroid.activity.ShowImageDetailsActivity;
 import com.example.administrator.superandroid.dto.MovingDto;
+import com.example.administrator.superandroid.view.RoundImage;
+import com.example.expressdelivery.view.RoundImageView;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +28,8 @@ import java.util.List;
 public class MovingRecycleAdapter extends RecyclerView.Adapter<MovingRecycleAdapter.BeautyView>{
     private List<MovingDto> movingDtos;
     private Context context;
+    private int selectPosition;
+
     public MovingRecycleAdapter(List<MovingDto> movingDtos, Context context) {
         this.movingDtos = movingDtos;
         this.context = context;
@@ -27,23 +37,34 @@ public class MovingRecycleAdapter extends RecyclerView.Adapter<MovingRecycleAdap
 
     @Override
     public BeautyView onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.beauty_recycle_item, parent, false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.moving_recycle_item, parent, false);
         return new BeautyView(view);
     }
 
     @Override
     public void onBindViewHolder(BeautyView holder, int position) {
-        if (movingDtos.get(position).getImageUrl().size() > 0){
-            Glide.with(context)
-                    .load(movingDtos.get(position).getImageUrl().get(0))
-                    .dontAnimate()
-                    .placeholder(R.drawable.image_defult_error)
-                    .into(holder.imageView);
-        }else{
-            holder.imageView.setVisibility(View.GONE);
-        }
-        holder.textView.setText(movingDtos.get(position).getContent());
-
+        selectPosition = position;
+        Picasso.with(context)
+                    .load(movingDtos.get(position).getAvatarUrl())
+                    .placeholder(R.drawable.default_image)
+                    .error(R.drawable.default_image)
+                    .into(holder.roundImageView);
+        holder.textUserName.setText(movingDtos.get(position).getUserName());
+        holder.textTime.setText(movingDtos.get(position).getPublishTime());
+        holder.textContent.setText(movingDtos.get(position).getContent());
+        holder.gridView.setAdapter(new OneImageGridViewAdpter(movingDtos.get(position).getImageUrl(),context));
+        holder.gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int positionId, long id) {
+                //对图片进行查看，删除
+                Intent intent = new Intent(context, ShowImageDetailsActivity.class);
+                intent.putExtra("ID", positionId);
+                Bundle bundle=new Bundle();
+                bundle.putStringArrayList("imageList", (ArrayList<String>) movingDtos.get(selectPosition).getImageUrl());
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -53,12 +74,18 @@ public class MovingRecycleAdapter extends RecyclerView.Adapter<MovingRecycleAdap
 
 
     public static class BeautyView extends  RecyclerView.ViewHolder{
-        ImageView imageView;
-        TextView textView;
+        RoundImage roundImageView;
+        TextView textUserName;
+        TextView textTime;
+        TextView textContent;
+        GridView gridView;
         public BeautyView(View itemView){
             super(itemView);
-            imageView= (ImageView) itemView.findViewById(R.id.recycle_item_img );
-            textView= (TextView) itemView.findViewById(R.id.recycle_item_text );
+            roundImageView= (RoundImage) itemView.findViewById(R.id.image_photo);
+            textUserName= (TextView) itemView.findViewById(R.id.text_name );
+            textTime= (TextView) itemView.findViewById(R.id.text_time );
+            gridView = (GridView) itemView.findViewById(R.id.moving_grid_view);
+            textContent = (TextView) itemView.findViewById(R.id.moving_content);
         }
 
     }

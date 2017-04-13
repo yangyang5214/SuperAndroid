@@ -8,13 +8,13 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -58,7 +58,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BeautyPublishActivity extends AppCompatActivity {
+public class MovingPublishActivity extends AppCompatActivity {
     private GridView noScrollgridview;//显示图片
     private GridAdapter adapter;
     private Toolbar mToolBar;
@@ -105,7 +105,7 @@ public class BeautyPublishActivity extends AppCompatActivity {
     private void initToolBar() {
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
         mTitleText = (TextView) findViewById(R.id.title_content);
-        mTitleText.setText("发表美景");
+        mTitleText.setText("发表动态");
         mToolBar.setTitle("");
         setSupportActionBar(mToolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -187,7 +187,7 @@ public class BeautyPublishActivity extends AppCompatActivity {
         //调用手机相册
         bt2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(BeautyPublishActivity.this, AlbumActivity.class);
+                Intent intent = new Intent(MovingPublishActivity.this, AlbumActivity.class);
                 startActivity(intent);
                 pop.dismiss();
                 ll_popup.clearAnimation();
@@ -254,7 +254,7 @@ public class BeautyPublishActivity extends AppCompatActivity {
 //        userid = sharedPreferences.getString("userId","");
         userid = "1";
         content = contentEdit.getText().toString();
-        if (content.length() > 15) {
+        if (content.length() > 100) {
             Toast.makeText(MyApplication.getInstance(), "话那么多干嘛", Toast.LENGTH_SHORT).show();
         } else {
             imageList = new ArrayList<>();
@@ -267,7 +267,7 @@ public class BeautyPublishActivity extends AppCompatActivity {
             }
             mProgressDialog = ProgressDialog.show(this, null, "图片上传中...", true, false);
             mProgressDialog.setCancelable(true);
-            Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().publishMoving(parts, userid, content, 1);
+            Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().publishMoving(parts, userid, content, 2);
             responseBodyCall.enqueue(new Callback<ResponseDto>() {
                 @Override
                 public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {

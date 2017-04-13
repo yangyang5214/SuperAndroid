@@ -1,6 +1,8 @@
 package com.example.administrator.superandroid.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +13,13 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.administrator.superandroid.R;
+import com.example.administrator.superandroid.activity.GalleryActivity;
+import com.example.administrator.superandroid.activity.ShowImageDetailsActivity;
 import com.example.administrator.superandroid.dto.BeautyDto;
 import com.example.expressdelivery.util.HttpClient;
+import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,13 +40,27 @@ public class BeautyRecycleAdapter extends RecyclerView.Adapter<BeautyRecycleAdap
     }
 
     @Override
-    public void onBindViewHolder(BeautyView holder, int position) {
-        Glide.with(context)
+    public void onBindViewHolder(BeautyView holder, final int position) {
+        Picasso.with(context)
                 .load(beautyDtoList.get(position).getImageUrl())
-                .dontAnimate()
-                .placeholder(R.drawable.image_defult_error)
+                .placeholder(R.drawable.default_image)
+                .error(R.drawable.default_image)
                 .into(holder.imageView);
         holder.textView.setText(beautyDtoList.get(position).getContent());
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //对图片进行查看，删除
+                Intent intent = new Intent(context, ShowImageDetailsActivity.class);
+                intent.putExtra("ID", 0);
+                Bundle bundle=new Bundle();
+                ArrayList<String> imagrList = new ArrayList<String>();
+                imagrList.add(beautyDtoList.get(position).getImageUrl());
+                bundle.putStringArrayList("imageList", imagrList);
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -2,28 +2,26 @@ package com.example.administrator.superandroid.fragment.find;
 
 import android.content.Intent;
 import android.graphics.Rect;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.administrator.superandroid.R;
+import com.example.administrator.superandroid.activity.GalleryActivity;
 import com.example.administrator.superandroid.activity.publish.BeautyPublishActivity;
 import com.example.administrator.superandroid.adapter.BeautyRecycleAdapter;
 import com.example.administrator.superandroid.base.BaseFragment;
 import com.example.administrator.superandroid.dto.BeautyDto;
-import com.example.administrator.superandroid.dto.MovingDto;
 import com.example.administrator.superandroid.intent.RetrofitClient;
 import com.example.administrator.superandroid.view.SwipeRefreshView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -44,7 +42,7 @@ public class BeautyFragment extends BaseFragment {
 
     @Override
     public View initView(LayoutInflater inflater) {
-        view = inflater.inflate(R.layout.activity_beauty, null);
+        view = inflater.inflate(R.layout.fragment_beauty, null);
         initView();
         refresh();
         return view;
@@ -78,7 +76,20 @@ public class BeautyFragment extends BaseFragment {
     private void setAdapter() {
         //设置layoutManager
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-
+//        recyclerView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //对图片进行查看，删除
+//                Intent intent = new Intent(getContext(), GalleryActivity.class);
+//                intent.putExtra("ID", 0);
+//                Bundle bundle=new Bundle();
+//                ArrayList<String> imagrList = new ArrayList<String>();
+//                imagrList.add(beautyDtoList.get(0));
+//                bundle.putStringArrayList("imageList", imagrList);
+//                intent.putExtras(bundle);
+//                startActivity(intent);
+//            }
+//        });
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             //用来标记是否正在向最后一个滑动，既是否向下滑动
             boolean isSlidingToLast = false;
@@ -120,7 +131,7 @@ public class BeautyFragment extends BaseFragment {
         adapter = new BeautyRecycleAdapter(beautyDtoList, getContext());
         recyclerView.setAdapter(adapter);
         //设置item之间的间隔
-        SpacesItemDecoration decoration = new SpacesItemDecoration(10);
+        SpacesItemDecoration decoration = new SpacesItemDecoration(5);
         recyclerView.addItemDecoration(decoration);
     }
 

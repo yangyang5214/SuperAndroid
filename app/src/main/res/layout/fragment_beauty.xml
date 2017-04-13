@@ -12,13 +12,13 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_moving"
+            android:id="@+id/recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.example.administrator.superandroid.view.SwipeRefreshView>
 
     <ImageView
-        android:id="@+id/moving_share"
+        android:id="@+id/beauty_publish"
         android:background="@drawable/publish"
         android:layout_width="50dp"
         android:layout_gravity="right|bottom"

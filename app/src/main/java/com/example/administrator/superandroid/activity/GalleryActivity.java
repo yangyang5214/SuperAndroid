@@ -39,7 +39,7 @@ public class GalleryActivity extends AppCompatActivity {
     //当前的位置
     private int location = 0;
 
-    private ArrayList<View> listViews = null;
+    private ArrayList<View> listViews;
     private ViewPagerFixed pager;
     private ViewPageAdapter adapter;
 
@@ -121,7 +121,6 @@ public class GalleryActivity extends AppCompatActivity {
 
 
     private void initData() {
-        Bundle bundle = intent.getExtras();
         adapter = new ViewPageAdapter(listViews,getApplicationContext());
         pager.setAdapter(adapter);
         int id = intent.getIntExtra("ID", 0);
