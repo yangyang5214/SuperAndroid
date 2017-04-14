@@ -7,8 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
@@ -18,16 +16,18 @@ import android.util.AttributeSet;
 import android.widget.ImageView;
 
 /**
- * Created by Administrator on 2016/10/8.
+ * Created by wangxiaosan on 2017/4/14.
  */
-public class RoundImage extends ImageView {
-
+public class ImageViewPlus extends ImageView {
     private Paint mPaintBitmap = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private Paint mPaintBorder = new Paint(Paint.ANTI_ALIAS_FLAG);
     private Bitmap mRawBitmap;
     private BitmapShader mShader;
     private Matrix mMatrix = new Matrix();
+    private float mBorderWidth = dip2px(5);
+    private int mBorderColor = 0xFF0080FF;
 
-    public RoundImage(Context context, AttributeSet attrs) {
+    public ImageViewPlus(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -45,16 +45,20 @@ public class RoundImage extends ImageView {
                 mShader = new BitmapShader(mRawBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
             }
             if (mShader != null) {
-                mMatrix.setScale(dstWidth / rawBitmap.getWidth(), dstHeight / rawBitmap.getHeight());
+                mMatrix.setScale((dstWidth - mBorderWidth * 2) / rawBitmap.getWidth(), (dstHeight - mBorderWidth * 2) / rawBitmap.getHeight());
                 mShader.setLocalMatrix(mMatrix);
             }
             mPaintBitmap.setShader(mShader);
+            mPaintBorder.setStyle(Paint.Style.STROKE);
+            mPaintBorder.setStrokeWidth(mBorderWidth);
+            mPaintBorder.setColor(mBorderColor);
             float radius = viewMinSize / 2.0f;
-            canvas.drawCircle(radius, radius, radius, mPaintBitmap);
+            canvas.drawCircle(radius, radius, radius - mBorderWidth / 2.0f, mPaintBorder);
+            canvas.translate(mBorderWidth, mBorderWidth);
+            canvas.drawCircle(radius - mBorderWidth, radius - mBorderWidth, radius - mBorderWidth, mPaintBitmap);
         } else {
             super.onDraw(canvas);
         }
-
     }
 
     private Bitmap getBitmap(Drawable drawable) {
@@ -72,5 +76,10 @@ public class RoundImage extends ImageView {
         } else {
             return null;
         }
+    }
+
+    private int dip2px(int dipVal) {
+        float scale = getResources().getDisplayMetrics().density;
+        return (int)(dipVal * scale + 0.5f);
     }
 }

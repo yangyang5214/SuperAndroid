@@ -4,33 +4,22 @@ import java.io.Serializable;
 
 public class UserDto implements Serializable {
 
-    private long userId;
-    private String userName;
-    private String passWord;
+    private Long id;
     private String nickName;
+    private String sex;
+    private String signature;
+    private String avatarUrl;
 
-    public long getUserId() {
-        return userId;
+    private String area;
+    private String universityName;
+    private String identityCardAddress;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public String getPassWord() {
-        return passWord;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public void setPassWord(String passWord) {
-        this.passWord = passWord;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNickName() {
@@ -39,5 +28,53 @@ public class UserDto implements Serializable {
 
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public String getUniversityName() {
+        return universityName;
+    }
+
+    public void setUniversityName(String universityName) {
+        this.universityName = universityName;
+    }
+
+    public String getIdentityCardAddress() {
+        return identityCardAddress;
+    }
+
+    public void setIdentityCardAddress(String identityCardAddress) {
+        this.identityCardAddress = identityCardAddress;
     }
 }

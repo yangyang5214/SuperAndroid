@@ -6,7 +6,7 @@
     <ImageView
         android:id="@+id/iv_header"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="250dp"
         android:src="@drawable/bg"
         android:scaleType="centerCrop" />
 </RelativeLayout>

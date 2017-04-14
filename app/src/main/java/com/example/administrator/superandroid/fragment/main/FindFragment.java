@@ -67,20 +67,20 @@ public class FindFragment extends BaseFragment {
 
         //将fragment装进列表中
         listFragment = new ArrayList<>();
-        listFragment.add(communityFragment);
+//        listFragment.add(communityFragment);
         listFragment.add(beautyFragment);
         listFragment.add(movingFragment);
         listFragment.add(marketFragment);
-        listFragment.add(jobFragment);
+//        listFragment.add(jobFragment);
 
 
         //将名称加载tab名字列表，正常情况下，我们应该在values/arrays.xml中进行定义然后调用
         listTitle = new ArrayList<>();
-        listTitle.add("社团");
+//        listTitle.add("社团");
         listTitle.add("校园");
         listTitle.add("动态");
         listTitle.add("二手");
-        listTitle.add("兼职");
+//        listTitle.add("兼职");
 
 
         //设置TabLayout的模式
@@ -89,8 +89,8 @@ public class FindFragment extends BaseFragment {
         tabFindFragmentTitle.addTab(tabFindFragmentTitle.newTab().setText(listTitle.get(0)));
         tabFindFragmentTitle.addTab(tabFindFragmentTitle.newTab().setText(listTitle.get(1)));
         tabFindFragmentTitle.addTab(tabFindFragmentTitle.newTab().setText(listTitle.get(2)));
-        tabFindFragmentTitle.addTab(tabFindFragmentTitle.newTab().setText(listTitle.get(3)));
-        tabFindFragmentTitle.addTab(tabFindFragmentTitle.newTab().setText(listTitle.get(4)));
+//        tabFindFragmentTitle.addTab(tabFindFragmentTitle.newTab().setText(listTitle.get(3)));
+//        tabFindFragmentTitle.addTab(tabFindFragmentTitle.newTab().setText(listTitle.get(4)));
 
         findAdapter = new FindFragmentAdapter(getActivity().getSupportFragmentManager(), listFragment, listTitle);
 

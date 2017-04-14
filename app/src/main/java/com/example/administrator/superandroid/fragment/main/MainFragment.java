@@ -34,18 +34,18 @@ public class MainFragment extends BaseFragment {
         listName.add("校历");
         listName.add("图书馆");
         listName.add("校园地图");
-        listName.add("论坛");
+        listName.add("洗衣");
         listName.add("一卡通");
-        listName.add("二手市场");
+        listName.add("水电费");
         listName.add("快递");
         listIcon.add(R.drawable.university);
         listIcon.add(R.drawable.gonggao);
         listIcon.add(R.drawable.xiaoli);
         listIcon.add(R.drawable.library);
         listIcon.add(R.drawable.map);
-        listIcon.add(R.drawable.luntan);
+        listIcon.add(R.drawable.xiyi);
         listIcon.add(R.drawable.yikatong);
-        listIcon.add(R.drawable.secondhand);
+        listIcon.add(R.drawable.shuidian);
         listIcon.add(R.drawable.kuaidi);
     }
 

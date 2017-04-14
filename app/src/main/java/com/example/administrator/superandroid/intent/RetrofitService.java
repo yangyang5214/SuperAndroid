@@ -29,7 +29,7 @@ import retrofit2.http.Query;
 
 public interface RetrofitService {
 
-    @GET("/user/record/login")
+    @GET("/user/login")
     Call<ResponseDto<UserDto>> login(@Query("username") String username, @Query("password") String password);
 
     @GET("/user/register")

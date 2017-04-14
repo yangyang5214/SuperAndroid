@@ -257,8 +257,9 @@ public class BeautyPublishActivity extends AppCompatActivity {
     }
 
     private void publishMoving() {
-//        userid = sharedPreferences.getString("userId","");
-        userid = "1";
+        sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("userId","");
+//        userid = "1";
         content = contentEdit.getText().toString();
         if (content.length() > 15) {
             Toast.makeText(MyApplication.getInstance(), "话那么多干嘛", Toast.LENGTH_SHORT).show();

@@ -18,6 +18,7 @@ import com.example.administrator.superandroid.activity.NoticeActivity;
 import com.example.administrator.superandroid.activity.main.SchoolCalendarActivity;
 import com.example.administrator.superandroid.activity.main.UniversityActivity;
 import com.example.administrator.superandroid.dto.ListMainFmDto;
+import com.example.administrator.superandroid.fragment.main.FindFragment;
 import com.example.administrator.superandroid.view.SuperScrollView;
 import com.example.expressdelivery.activity.QueryActivity;
 
@@ -93,16 +94,18 @@ public class ListAdapter extends BaseAdapter implements AdapterView.OnItemClickL
                 mContext.startActivity(libraryIntent);
                 break;
             case 4:
-                Intent mapIntent = new Intent(mContext.getApplicationContext(), MapActivity.class);
-                mContext.startActivity(mapIntent);
+                Toast.makeText(mContext, "敬请期待...", Toast.LENGTH_SHORT).show();
+//                Intent mapIntent = new Intent(mContext.getApplicationContext(), MapActivity.class);
+//                mContext.startActivity(mapIntent);
                 break;
             case 5:
+                Toast.makeText(mContext, "敬请期待...", Toast.LENGTH_SHORT).show();
                 break;
             case 6:
-                Toast.makeText(mContext, "5", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "敬请期待...", Toast.LENGTH_SHORT).show();
                 break;
             case 7:
-                Toast.makeText(mContext, "7", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "敬请期待...", Toast.LENGTH_SHORT).show();
                 break;
             case 8:
                 Intent intent = new Intent(mContext.getApplicationContext(), QueryActivity.class);

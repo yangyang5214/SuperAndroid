@@ -260,8 +260,9 @@ public class MarketPublishActivity extends AppCompatActivity {
     }
 
     private void publishMoving() {
-//        userid = sharedPreferences.getString("userId","");
-        userid = "1";
+        sharedPreferences = getSharedPreferences("UserData", Context.MODE_PRIVATE);
+        userid = sharedPreferences.getString("userId","");
+//        userid = "1";
         content = contentEdit.getText().toString();
         String price = priceEdit.getText().toString();
         imageList = new ArrayList<>();

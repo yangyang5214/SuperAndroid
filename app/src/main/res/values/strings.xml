@@ -8,4 +8,5 @@
     <string name="preview">预览</string>
     <string name="camera_cancel">取消</string>
     <string name="no_photo">相册没有图片</string>
+    <string name="usermessage">啥也不留</string>
 </resources>
