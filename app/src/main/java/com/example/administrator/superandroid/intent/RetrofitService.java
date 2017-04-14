@@ -2,6 +2,7 @@ package com.example.administrator.superandroid.intent;
 
 
 import com.example.administrator.superandroid.dto.BeautyDto;
+import com.example.administrator.superandroid.dto.MarketDto;
 import com.example.administrator.superandroid.dto.MovingDto;
 import com.example.administrator.superandroid.dto.ResponseDto;
 import com.example.administrator.superandroid.dto.UserDto;
@@ -43,6 +44,7 @@ public interface RetrofitService {
             @Part() List<MultipartBody.Part> files,
             @Query("userId") String userId,
             @Query("content") String content,
+            @Query("price") String price,
             @Query("type") int type
     );
 
@@ -51,4 +53,7 @@ public interface RetrofitService {
 
     @GET("/find/beauty/allBeauty")
     Call<List<BeautyDto>> getListBeauty(@Query("size") int size, @Query("offset") int offset);
+
+    @GET("/find/market/allMarket")
+    Call<List<MarketDto>> getListMarket(@Query("size") int size, @Query("offset") int offset);
 }

@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -16,7 +17,6 @@ import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -26,6 +26,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -60,7 +61,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class BeautyPublishActivity extends AppCompatActivity {
+public class MarketPublishActivity extends AppCompatActivity {
     private GridView noScrollgridview;//显示图片
     private GridAdapter adapter;
     private Toolbar mToolBar;
@@ -69,6 +70,7 @@ public class BeautyPublishActivity extends AppCompatActivity {
     private LinearLayout ll_popup;
     private static final int TAKE_PICTURE = 0x000001;
     private EditText contentEdit;
+    private EditText priceEdit;
     private List<String> imageList;//动态图片的集合
     private ProgressDialog mProgressDialog;
     private SharedPreferences sharedPreferences;
@@ -78,7 +80,7 @@ public class BeautyPublishActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_beauty_publish);
+        setContentView(R.layout.activity_market_publish);
         initToolBar();
         initView();
         initData();
@@ -107,7 +109,7 @@ public class BeautyPublishActivity extends AppCompatActivity {
     private void initToolBar() {
         mToolBar = (Toolbar) findViewById(R.id.toolbar);
         mTitleText = (TextView) findViewById(R.id.title_content);
-        mTitleText.setText("发表美景");
+        mTitleText.setText("二手发布");
         mToolBar.setTitle("");
         setSupportActionBar(mToolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -157,6 +159,8 @@ public class BeautyPublishActivity extends AppCompatActivity {
 
     private void initView() {
         contentEdit = (EditText) findViewById(R.id.moving_content);
+        priceEdit = (EditText) findViewById(R.id.market_price);
+        priceEdit.setInputType(EditorInfo.TYPE_CLASS_PHONE);
         pop = new PopupWindow(this);
         View view = getLayoutInflater().inflate(R.layout.item_popupwindows, null);
         ll_popup = (LinearLayout) view.findViewById(R.id.ll_popup);
@@ -189,7 +193,7 @@ public class BeautyPublishActivity extends AppCompatActivity {
         //调用手机相册
         bt2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(BeautyPublishActivity.this, AlbumActivity.class);
+                Intent intent = new Intent(MarketPublishActivity.this, AlbumActivity.class);
                 startActivity(intent);
                 pop.dismiss();
                 ll_popup.clearAnimation();
@@ -259,39 +263,35 @@ public class BeautyPublishActivity extends AppCompatActivity {
 //        userid = sharedPreferences.getString("userId","");
         userid = "1";
         content = contentEdit.getText().toString();
-        if (content.length() > 15) {
-            Toast.makeText(MyApplication.getInstance(), "话那么多干嘛", Toast.LENGTH_SHORT).show();
-        } else {
-            imageList = new ArrayList<>();
-            for (int i = 0; i < Bimp.tempSelectBitmap.size(); i++) {
-                imageList.add(Bimp.tempSelectBitmap.get(i).imagePath);
-            }
-            List<MultipartBody.Part> parts = null;
-            if (imageList.size() != 0) {
-                parts = ImageUtil.filesToMultipartBodyParts(imageList);
-            }
-            mProgressDialog = ProgressDialog.show(this, null, "图片上传中...", true, false);
-            mProgressDialog.setCancelable(true);
-            Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().publishMoving(parts, userid, content,null, 1);
-            responseBodyCall.enqueue(new Callback<ResponseDto>() {
-                @Override
-                public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {
-                    ResponseDto message = response.body();
-                    if (message.getSuccess() == true) {
-                        if (response.isSuccessful()) {
-                            mProgressDialog.dismiss();
-                            Bimp.tempSelectBitmap.clear();
-                            finish();
-                        }
+        String price = priceEdit.getText().toString();
+        imageList = new ArrayList<>();
+        for (int i = 0; i < Bimp.tempSelectBitmap.size(); i++) {
+            imageList.add(Bimp.tempSelectBitmap.get(i).imagePath);
+        }
+        List<MultipartBody.Part> parts = null;
+        if (imageList.size() != 0) {
+            parts = ImageUtil.filesToMultipartBodyParts(imageList);
+        }
+        mProgressDialog = ProgressDialog.show(this, null, "图片上传中...", true, false);
+        mProgressDialog.setCancelable(true);
+        Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().publishMoving(parts, userid, content,price, 3);
+        responseBodyCall.enqueue(new Callback<ResponseDto>() {
+            @Override
+            public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {
+                ResponseDto message = response.body();
+                if (message.getSuccess() == true) {
+                    if (response.isSuccessful()) {
+                        mProgressDialog.dismiss();
+                        Bimp.tempSelectBitmap.clear();
+                        finish();
                     }
                 }
+            }
 
-                @Override
-                public void onFailure(Call<ResponseDto> call, Throwable t) {
-                }
-            });
-        }
-
+            @Override
+            public void onFailure(Call<ResponseDto> call, Throwable t) {
+            }
+        });
     }
 
     @Override

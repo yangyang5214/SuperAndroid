@@ -1,18 +1,23 @@
 package com.example.administrator.superandroid.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.administrator.superandroid.R;
+import com.example.administrator.superandroid.activity.ShowImageDetailsActivity;
 import com.example.administrator.superandroid.view.SuperScrollView;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +26,7 @@ import java.util.List;
 public class OneImageGridViewAdpter extends BaseAdapter {
     private List<String> urlList;
     private Context context;
+    private int positionId;
 
     public OneImageGridViewAdpter(List<String> urlList,Context context) {
         this.context = context;
@@ -44,6 +50,7 @@ public class OneImageGridViewAdpter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+         positionId = position;
         ViewHolder viewHolder = null;
         if (viewHolder== null){
             convertView = LayoutInflater.from(context).inflate(
@@ -59,6 +66,18 @@ public class OneImageGridViewAdpter extends BaseAdapter {
                 .placeholder(R.drawable.default_image)
                 .error(R.drawable.default_image)
                 .into(viewHolder.imageView);
+        viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                        //对图片进行查看，删除
+                        Intent intent = new Intent(context, ShowImageDetailsActivity.class);
+                        intent.putExtra("ID", positionId);
+                        Bundle bundle=new Bundle();
+                        bundle.putStringArrayList("imageList", (ArrayList<String>) urlList);
+                        intent.putExtras(bundle);
+                        context.startActivity(intent);
+                    }
+        });
         return convertView;
     }
 

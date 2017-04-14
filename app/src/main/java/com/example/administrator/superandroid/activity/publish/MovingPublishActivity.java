@@ -1,5 +1,6 @@
 package com.example.administrator.superandroid.activity.publish;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,6 +14,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -207,6 +209,9 @@ public class MovingPublishActivity extends AppCompatActivity {
 
     //调用系统相机
     public void takePhoto() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                1);
         Intent openCameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(openCameraIntent, TAKE_PICTURE);
     }
@@ -267,7 +272,7 @@ public class MovingPublishActivity extends AppCompatActivity {
             }
             mProgressDialog = ProgressDialog.show(this, null, "图片上传中...", true, false);
             mProgressDialog.setCancelable(true);
-            Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().publishMoving(parts, userid, content, 2);
+            Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().publishMoving(parts, userid, content,null, 2);
             responseBodyCall.enqueue(new Callback<ResponseDto>() {
                 @Override
                 public void onResponse(Call<ResponseDto> call, Response<ResponseDto> response) {

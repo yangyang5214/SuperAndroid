@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.administrator.superandroid">
 
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
     <!-- 网络权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -48,6 +51,7 @@
         <activity android:name=".activity.NoticeActivity" />
         <activity android:name=".activity.publish.BeautyPublishActivity" />
         <activity android:name=".activity.publish.MovingPublishActivity" />
+        <activity android:name=".activity.publish.MarketPublishActivity" />
         <activity android:name=".activity.ShowImageDetailsActivity"></activity>
     </application>
 
