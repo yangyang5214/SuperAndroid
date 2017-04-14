@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import com.example.administrator.superandroid.activity.publish.BeautyPublishActi
 import com.example.administrator.superandroid.activity.publish.MarketPublishActivity;
 import com.example.administrator.superandroid.adapter.BeautyRecycleAdapter;
 import com.example.administrator.superandroid.adapter.MarketRecycleAdapter;
+import com.example.administrator.superandroid.adapter.MovingRecycleAdapter;
 import com.example.administrator.superandroid.base.BaseFragment;
 import com.example.administrator.superandroid.dto.BeautyDto;
 import com.example.administrator.superandroid.dto.MarketDto;
@@ -75,7 +77,9 @@ public class MarketFragment extends BaseFragment {
     }
 
     private void setAdapter() {
-        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL));
+        //设置layoutManager
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 1));
+
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             //用来标记是否正在向最后一个滑动，既是否向下滑动
             boolean isSlidingToLast = false;
@@ -83,12 +87,11 @@ public class MarketFragment extends BaseFragment {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                StaggeredGridLayoutManager manager = (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
+                GridLayoutManager manager = (GridLayoutManager) recyclerView.getLayoutManager();
                 // 当不滚动时
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     //获取最后一个完全显示的ItemPosition
-                    int[] lastVisiblePositions = manager.findLastVisibleItemPositions(new int[manager.getSpanCount()]);
-                    int lastVisiblePos = getMaxElem(lastVisiblePositions);
+                    int lastVisiblePos = manager.findLastVisibleItemPosition();
                     int totalItemCount = manager.getItemCount();
 
                     // 判断是否滚动到底部

@@ -233,7 +233,7 @@ public class MarketPublishActivity extends AppCompatActivity {
                     Bitmap bm = (Bitmap) data.getExtras().get("data");
                     takePhoto.setBitmap(bm);
                     FileOutputStream out = null;
-                    String SDPATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/aijianshen/";
+                    String SDPATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/八一农大/";
                     File file = new File(SDPATH);
                     if (!file.exists()) {
                         file.mkdirs();// 如果文件夹不存在，则创建文件夹
@@ -272,7 +272,7 @@ public class MarketPublishActivity extends AppCompatActivity {
         if (imageList.size() != 0) {
             parts = ImageUtil.filesToMultipartBodyParts(imageList);
         }
-        mProgressDialog = ProgressDialog.show(this, null, "图片上传中...", true, false);
+        mProgressDialog = ProgressDialog.show(this, null, "发表中...", true, false);
         mProgressDialog.setCancelable(true);
         Call<ResponseDto> responseBodyCall = RetrofitClient.getClient().publishMoving(parts, userid, content,price, 3);
         responseBodyCall.enqueue(new Callback<ResponseDto>() {

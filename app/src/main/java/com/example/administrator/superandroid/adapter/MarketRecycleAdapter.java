@@ -72,7 +72,7 @@ public class MarketRecycleAdapter extends RecyclerView.Adapter<MarketRecycleAdap
         TextView textViewPrice;
         public BeautyView(View itemView){
             super(itemView);
-            roundImageView= (RoundImage) itemView.findViewById(R.id.image_photo);
+            roundImageView= (RoundImage) itemView.findViewById(R.id.image_photo_market);
             textUserName= (TextView) itemView.findViewById(R.id.text_name );
             textTime= (TextView) itemView.findViewById(R.id.text_time );
             textViewPrice= (TextView) itemView.findViewById(R.id.price );

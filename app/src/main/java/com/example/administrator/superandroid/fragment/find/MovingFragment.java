@@ -170,7 +170,7 @@ public class MovingFragment extends BaseFragment {
         beautyPublish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), BeautyPublishActivity.class);
+                Intent intent = new Intent(getContext(), MovingPublishActivity.class);
                 startActivity(intent);
             }
         });
