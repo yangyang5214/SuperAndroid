@@ -68,8 +68,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 username = editUsername.getText().toString();
                 password = editPassword.getText().toString();
-                if (StringUtil.isNotEmpty(username) || StringUtil.isNotEmpty(password)){
-                    Toast.makeText(getApplicationContext(), ConfigUtil.getValueByKey(getApplicationContext(),"username.or.password.not.null"), Toast.LENGTH_SHORT).show();
+                if (StringUtil.isEmpty(username) || StringUtil.isEmpty(password)){
+                    Toast.makeText(getApplicationContext(), "用户名或密码不能为空", Toast.LENGTH_SHORT).show();
                 }
                 Call<ResponseDto<UserDto>> responseBodyCall = RetrofitClient.getClient().login(username, password);
                 responseBodyCall.enqueue(new Callback<ResponseDto<UserDto>>() {
