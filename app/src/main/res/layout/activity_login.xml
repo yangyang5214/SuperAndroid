@@ -26,7 +26,7 @@
             android:layout_marginTop="40dp"
             android:background="@drawable/rect_gray"
             android:gravity="center"
-            android:hint="用户名" />
+            android:hint="学号" />
 
         <EditText
             android:id="@+id/password"
@@ -37,7 +37,7 @@
             android:layout_marginTop="25dp"
             android:background="@drawable/rect_gray"
             android:gravity="center"
-            android:hint="密码"
+            android:hint="教务网密码"
             android:inputType="textPassword" />
 
         <Button
