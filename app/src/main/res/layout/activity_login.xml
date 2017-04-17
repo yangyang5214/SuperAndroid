@@ -13,29 +13,32 @@
         <EditText
             android:id="@+id/username"
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/rect_gray"
+            android:layout_height="50dp" />
 
         <EditText
             android:id="@+id/password"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:background="@drawable/rect_gray"
+            android:layout_height="50dp" />
 
         <Button
             android:id="@+id/login"
-            android:layout_width="200dp"
-            android:text="login"
-            android:layout_height="100dp" />
-
-        <CheckBox
-            android:id="@+id/remember"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text="记住密码" />
+            android:background="@drawable/rect_gray_orange"
+            android:text="登录"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_height="50dp" />
 
-        <CheckBox
-            android:id="@+id/autologin"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text="自动登录" />
     </LinearLayout>
 </LinearLayout>
