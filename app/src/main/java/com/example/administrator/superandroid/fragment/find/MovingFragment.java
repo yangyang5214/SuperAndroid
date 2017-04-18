@@ -5,26 +5,20 @@ import android.graphics.Rect;
 import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.administrator.superandroid.R;
-import com.example.administrator.superandroid.activity.publish.BeautyPublishActivity;
 import com.example.administrator.superandroid.activity.publish.MovingPublishActivity;
-import com.example.administrator.superandroid.adapter.BeautyRecycleAdapter;
 import com.example.administrator.superandroid.adapter.MovingRecycleAdapter;
 import com.example.administrator.superandroid.base.BaseFragment;
-import com.example.administrator.superandroid.dto.BeautyDto;
+import com.example.administrator.superandroid.dto.ListResponseDto;
 import com.example.administrator.superandroid.dto.MovingDto;
 import com.example.administrator.superandroid.intent.RetrofitClient;
 import com.example.administrator.superandroid.view.SwipeRefreshView;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,11 +48,11 @@ public class MovingFragment extends BaseFragment {
     }
 
     public void initMovingData() {
-        Call<List<MovingDto>> responseBodyCall = RetrofitClient.getClient().getListMoving(size, offset);
-        responseBodyCall.enqueue(new Callback<List<MovingDto>>() {
+        Call<ListResponseDto<MovingDto>> responseBodyCall = RetrofitClient.getClient().getListMoving(size, offset);
+        responseBodyCall.enqueue(new Callback<ListResponseDto<MovingDto>>() {
             @Override
-            public void onResponse(Call<List<MovingDto>> call, Response<List<MovingDto>> response) {
-                List<MovingDto> result = response.body();
+            public void onResponse(Call<ListResponseDto<MovingDto>> call, Response<ListResponseDto<MovingDto>> response) {
+                List<MovingDto> result = response.body().getObj();
                 if (result.size() == 0){
                     Toast.makeText(getContext(),"到底啦....",Toast.LENGTH_LONG).show();
                 }
@@ -73,7 +67,7 @@ public class MovingFragment extends BaseFragment {
             }
 
             @Override
-            public void onFailure(Call<List<MovingDto>> call, Throwable t) {
+            public void onFailure(Call<ListResponseDto<MovingDto>> call, Throwable t) {
             }
         });
     }

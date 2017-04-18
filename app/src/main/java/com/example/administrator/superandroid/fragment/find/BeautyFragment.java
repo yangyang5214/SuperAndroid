@@ -76,20 +76,6 @@ public class BeautyFragment extends BaseFragment {
     private void setAdapter() {
         //设置layoutManager
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-//        recyclerView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //对图片进行查看，删除
-//                Intent intent = new Intent(getContext(), GalleryActivity.class);
-//                intent.putExtra("ID", 0);
-//                Bundle bundle=new Bundle();
-//                ArrayList<String> imagrList = new ArrayList<String>();
-//                imagrList.add(beautyDtoList.get(0));
-//                bundle.putStringArrayList("imageList", imagrList);
-//                intent.putExtras(bundle);
-//                startActivity(intent);
-//            }
-//        });
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             //用来标记是否正在向最后一个滑动，既是否向下滑动
             boolean isSlidingToLast = false;

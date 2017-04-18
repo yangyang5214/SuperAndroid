@@ -79,7 +79,6 @@ public class LoginActivity extends AppCompatActivity {
                         if (userDto.getSuccess() == true) {
                             saveUserMeaasge(userDto.getObj());
                             intentMain();
-                            finish();
                         } else {
                             Toast.makeText(getApplicationContext(), userDto.getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -97,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
     public void  intentMain(){
         Intent mIntent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(mIntent);
+        this.finish();
     }
 
     public void saveUserMeaasge(UserDto userDto){
