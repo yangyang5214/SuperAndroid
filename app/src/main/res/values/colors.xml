@@ -15,5 +15,5 @@
     <color name="swipe_color_4">#DD8546</color>
     <color name="none_color">#00000000</color>
     <color name="colorFleet">#bfbfbf</color>
-
+    <color name="background">#F6F6F6</color>
 </resources>
