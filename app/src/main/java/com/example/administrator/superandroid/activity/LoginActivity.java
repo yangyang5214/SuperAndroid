@@ -48,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
             intentMain();
         }
         login();
-
     }
 
     private boolean isLogin() {
