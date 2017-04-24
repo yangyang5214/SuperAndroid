@@ -8,6 +8,7 @@ import com.example.administrator.superandroid.dto.MovingDto;
 import com.example.administrator.superandroid.dto.ResponseDto;
 import com.example.administrator.superandroid.dto.UserDto;
 import com.example.administrator.superandroid.dto.UserFindDataDto;
+import com.example.administrator.superandroid.dto.WeiXinDto;
 
 import java.util.List;
 
@@ -52,6 +53,9 @@ public interface RetrofitService {
 
     @GET("/find/market/allMarket")
     Call<List<MarketDto>> getListMarket(@Query("size") int size, @Query("offset") int offset);
+
+    @GET("/find/allWeiXin")
+    Call<List<WeiXinDto>> getListWeixin();
 
     @GET("/user/find/data")
     Call<ResponseDto<UserFindDataDto>> getUserFindData(@Query("userId") long userId);

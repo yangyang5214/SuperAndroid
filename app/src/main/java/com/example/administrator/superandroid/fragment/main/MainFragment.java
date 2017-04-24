@@ -33,8 +33,8 @@ public class MainFragment extends BaseFragment {
         listName.add("公告");
         listName.add("校历");
         listName.add("图书馆");
-        listName.add("校园地图");
-        listName.add("洗衣");
+        listName.add("校园街景");
+        listName.add("公众号");
         listName.add("一卡通");
         listName.add("水电费");
         listName.add("快递");
@@ -43,7 +43,7 @@ public class MainFragment extends BaseFragment {
         listIcon.add(R.drawable.xiaoli);
         listIcon.add(R.drawable.library);
         listIcon.add(R.drawable.map);
-        listIcon.add(R.drawable.xiyi);
+        listIcon.add(R.drawable.weixingzh);
         listIcon.add(R.drawable.yikatong);
         listIcon.add(R.drawable.shuidian);
         listIcon.add(R.drawable.kuaidi);

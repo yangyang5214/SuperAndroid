@@ -2,6 +2,7 @@ package com.example.administrator.superandroid.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,12 @@ import android.widget.Toast;
 import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.activity.main.LibraryActivity;
 import com.example.administrator.superandroid.activity.MainActivity;
-import com.example.administrator.superandroid.activity.main.MapActivity;
+import com.example.administrator.superandroid.activity.main.ServerActivity;
 import com.example.administrator.superandroid.activity.NoticeActivity;
 import com.example.administrator.superandroid.activity.main.SchoolCalendarActivity;
 import com.example.administrator.superandroid.activity.main.UniversityActivity;
 import com.example.administrator.superandroid.dto.ListMainFmDto;
-import com.example.administrator.superandroid.fragment.main.FindFragment;
+import com.example.administrator.superandroid.util.ConfigUtil;
 import com.example.administrator.superandroid.view.SuperScrollView;
 import com.example.expressdelivery.activity.QueryActivity;
 
@@ -94,12 +95,15 @@ public class ListAdapter extends BaseAdapter implements AdapterView.OnItemClickL
                 mContext.startActivity(libraryIntent);
                 break;
             case 4:
-                Toast.makeText(mContext, "敬请期待...", Toast.LENGTH_SHORT).show();
-//                Intent mapIntent = new Intent(mContext.getApplicationContext(), MapActivity.class);
-//                mContext.startActivity(mapIntent);
+                Intent mapIntent = new Intent();
+                mapIntent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse(ConfigUtil.getValueByKey(mContext,"school.map.url"));
+                mapIntent.setData(content_url);
+                mContext.startActivity(mapIntent);
                 break;
             case 5:
-                Toast.makeText(mContext, "敬请期待...", Toast.LENGTH_SHORT).show();
+                Intent weixinIntent = new Intent(mContext.getApplicationContext(), ServerActivity.class);
+                mContext.startActivity(weixinIntent);
                 break;
             case 6:
                 Toast.makeText(mContext, "敬请期待...", Toast.LENGTH_SHORT).show();

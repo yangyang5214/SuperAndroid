@@ -18,10 +18,4 @@
         android:layout_margin="5dp"
         android:gravity="center"
         android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/comment_good"
-        android:text="52"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </LinearLayout>
