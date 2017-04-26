@@ -1,13 +1,21 @@
 package com.example.administrator.superandroid.fragment.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.administrator.superandroid.activity.AlbumActivity;
 import com.example.expressdelivery.MyApplication;
 import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.adapter.ListAdapter;
@@ -24,6 +32,7 @@ public class MainFragment extends BaseFragment {
     private List<String> listName;
     private List<Integer> listIcon;
     private SharedPreferences sharedPreferences;
+    private PopupWindow pop = null;
 
     public void initData() {
         sharedPreferences = this.getActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE);

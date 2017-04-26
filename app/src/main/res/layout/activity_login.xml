@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/qqq">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,11 +12,11 @@
 
 
         <com.example.administrator.superandroid.view.RoundImage
-        android:layout_marginTop="80dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center"
-        android:background="@mipmap/bayinongda" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:src="@mipmap/bayinongda" />
 
         <EditText
             android:id="@+id/username"
