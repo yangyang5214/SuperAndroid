@@ -20,12 +20,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.administrator.superandroid.R;
 import com.example.administrator.superandroid.adapter.DiscussAdapter;
 import com.example.administrator.superandroid.dto.BeautyDto;
 import com.example.administrator.superandroid.dto.CommentDto;
+import com.example.administrator.superandroid.dto.ListResponseDto;
 import com.example.administrator.superandroid.dto.MovingDto;
 import com.example.administrator.superandroid.intent.RetrofitClient;
 import com.example.administrator.superandroid.intent.RetrofitService;
@@ -42,6 +44,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -258,7 +261,7 @@ public class MovingDetailsActivity extends AppCompatActivity implements View.OnC
                         discuss.setCommentUserId(discusUserId);
                     }
                 }
-                discuss.setCommentUserId(Long.parseLong(getSharedPreferences("UserData", Context.MODE_PRIVATE).getString("userId","")));
+                discuss.setUnCommentUserId(Long.parseLong(getSharedPreferences("UserData", Context.MODE_PRIVATE).getString("userId","")));
                 showdiscuss(discuss);
                 discussContent.setText("");
                 break;
@@ -280,17 +283,15 @@ public class MovingDetailsActivity extends AppCompatActivity implements View.OnC
 
 
     public void showdiscuss(CommentDto commentDto) {
-        RetrofitService retrofitService = RetrofitClient.getClient();
-        Call<String> call = retrofitService.publishdiscuss(commentDto);
-        call.enqueue(new Callback<String>() {
+        Call<ResponseBody> responseBodyCall = RetrofitClient.getClient().publishdiscuss(commentDto.getMovingId(),commentDto.getContent(),commentDto.getCommentUserId(),commentDto.getUnCommentUserId());
+        responseBodyCall.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-                        getDiscusses(movingId);
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                getDiscusses(movingId);
             }
 
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
-
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
             }
         });
     }

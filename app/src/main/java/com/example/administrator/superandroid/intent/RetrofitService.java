@@ -14,7 +14,10 @@ import com.example.administrator.superandroid.dto.WeiXinDto;
 import java.util.List;
 
 import okhttp3.MultipartBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -37,7 +40,7 @@ public interface RetrofitService {
     Call<ResponseDto> registerForCode(@Query("code") String code, @Query("email") String email);
 
     @Multipart
-    @POST("find/moving/publish")
+    @POST("/find/moving/publish")
     Call<ResponseDto> publishMoving(
             @Part() List<MultipartBody.Part> files,
             @Query("userId") String userId,
@@ -61,9 +64,9 @@ public interface RetrofitService {
     @GET("/user/find/data")
     Call<ResponseDto<UserFindDataDto>> getUserFindData(@Query("userId") long userId);
 
-    @GET("/moving/comment")
+    @GET("/find/moving/comment")
     Call<List<CommentDto>> getCommentDto(@Query("movingId") long movingId);
 
-    @POST("/moving/publishdiscuss")
-    Call<String> publishdiscuss(CommentDto commentDto);
+    @GET("/find/moving/publish/comment")
+    Call<ResponseBody> publishdiscuss(@Query("movingId") long movingId,@Query("content") String content,@Query("userId") long userId,@Query("unUserId") long unUserId);
 }
