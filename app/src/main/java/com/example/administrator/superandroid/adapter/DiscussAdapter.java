@@ -64,12 +64,7 @@ public class DiscussAdapter extends BaseAdapter {
         viewHolder.textTime.setText(discussList.get(i).getCommentTime());
         viewHolder.textNickname.setText(discussList.size() - i + "楼   " + discussList.get(i).getCommentUserName());
 
-//        if ((discussList.get(i).discuss_user_id != discussList.get(i).userId &&  movingUserId != discussList.get(i).discuss_user_id)  || (movingUserId == discussList.get(i).userId &&  discussList.get(i).discuss_user_id != discussList.get(i).userId)
-//                ) {
-//            viewHolder.textContent.setText("回复 " + discussList.get(i).discuss_user_name + ":" + discussList.get(i).discuss_content);
-//        } else {
-//            viewHolder.textContent.setText(discussList.get(i).discuss_content);
-//        }
+        viewHolder.textContent.setText("回复 " + discussList.get(i).getCommentUserName() + ":" + discussList.get(i).getContent());
         Picasso.with(context).load(discussList.get(i).getCommentUserImage()).into(viewHolder.imagePhoto);
         return view;
     }

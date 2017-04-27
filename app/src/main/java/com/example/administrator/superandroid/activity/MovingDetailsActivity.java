@@ -273,7 +273,7 @@ public class MovingDetailsActivity extends AppCompatActivity implements View.OnC
         if (discussContent.getText().length() != 0) {
             textViewSure.setPressed(true);
             textViewSure.setClickable(true);
-            textViewSure.setBackgroundResource(R.color.blue);
+            textViewSure.setBackgroundResource(R.color.yellow);
         } else {
             textViewSure.setPressed(false);
             textViewSure.setClickable(false);
