@@ -1,7 +1,7 @@
 package com.example.expressdelivery.activity;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -11,9 +11,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.android.volley.VolleyError;
-import com.example.expressdelivery.R;
-import com.example.expressdelivery.entity.CompanyEntity;
 import com.example.expressdelivery.entity.Extras;
 import com.example.expressdelivery.entity.RequestCode;
 import com.example.expressdelivery.entity.SearchInfo;
@@ -32,7 +29,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class QueryActivity extends AppCompatActivity {
+public class QueryActivity extends Activity {
 
     private EditText etPostId;
     private EditText etCompanyId;
