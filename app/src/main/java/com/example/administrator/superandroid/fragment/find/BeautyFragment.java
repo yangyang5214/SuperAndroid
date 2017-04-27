@@ -54,15 +54,16 @@ public class BeautyFragment extends BaseFragment {
             @Override
             public void onResponse(Call<List<BeautyDto>> call, Response<List<BeautyDto>> response) {
                 List<BeautyDto> result = response.body();
-                if (result.size() == 0){
-                    Toast.makeText(getContext(),"到底啦....",Toast.LENGTH_LONG).show();
-                }
-                if (beautyDtoList.size() == 0) {
-                    beautyDtoList = result;
-                    setAdapter();
+                if (result == null) {
+                    Toast.makeText(getContext(), "到底啦....", Toast.LENGTH_LONG).show();
                 } else {
-                    beautyDtoList.addAll(result);
-                    adapter.notifyDataSetChanged();
+                    if (beautyDtoList.size() == 0) {
+                        beautyDtoList = result;
+                        setAdapter();
+                    } else {
+                        beautyDtoList.addAll(result);
+                        adapter.notifyDataSetChanged();
+                    }
                 }
 
             }
@@ -136,7 +137,6 @@ public class BeautyFragment extends BaseFragment {
         beautyDtoList = new ArrayList<>();
         initMovingData();
     }
-
 
 
     public void refresh() {

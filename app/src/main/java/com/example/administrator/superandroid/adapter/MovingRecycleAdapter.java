@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.administrator.superandroid.R;
+import com.example.administrator.superandroid.activity.MovingDetailsActivity;
 import com.example.administrator.superandroid.activity.ShowImageDetailsActivity;
 import com.example.administrator.superandroid.dto.MovingDto;
 import com.example.administrator.superandroid.view.RoundImage;
@@ -30,6 +31,7 @@ public class MovingRecycleAdapter extends RecyclerView.Adapter<MovingRecycleAdap
     private List<MovingDto> movingDtos;
     private Context context;
     private List<String> listImage = new ArrayList<>();
+    private View view;
     public MovingRecycleAdapter(List<MovingDto> movingDtos, Context context) {
         this.movingDtos = movingDtos;
         this.context = context;
@@ -37,12 +39,12 @@ public class MovingRecycleAdapter extends RecyclerView.Adapter<MovingRecycleAdap
 
     @Override
     public BeautyView onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.moving_recycle_item, parent, false);
+        view= LayoutInflater.from(parent.getContext()).inflate(R.layout.moving_recycle_item, parent, false);
         return new BeautyView(view);
     }
 
     @Override
-    public void onBindViewHolder(BeautyView holder, int position) {
+    public void onBindViewHolder(BeautyView holder, final int position) {
         listImage = movingDtos.get(position).getImageUrl();
         Picasso.with(context)
                     .load(movingDtos.get(position).getAvatarUrl())
@@ -53,7 +55,16 @@ public class MovingRecycleAdapter extends RecyclerView.Adapter<MovingRecycleAdap
         holder.textTime.setText(movingDtos.get(position).getPublishTime());
         holder.textContent.setText(movingDtos.get(position).getContent());
         holder.gridView.setAdapter(new OneImageGridViewAdpter(listImage,context));
-
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MovingDetailsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("Moving", movingDtos.get(position));
+                intent.putExtras(bundle);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <WebView
-        android:id="@+id/library"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></WebView>
+        android:layout_height="match_parent">
 
-</RelativeLayout>
+        <include layout="@layout/toolbar" />
+
+        <WebView
+            android:id="@+id/library"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></WebView>
+    </RelativeLayout>
+</ScrollView>

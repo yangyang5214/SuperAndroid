@@ -52,16 +52,18 @@ public class MovingFragment extends BaseFragment {
         responseBodyCall.enqueue(new Callback<ListResponseDto<MovingDto>>() {
             @Override
             public void onResponse(Call<ListResponseDto<MovingDto>> call, Response<ListResponseDto<MovingDto>> response) {
-                List<MovingDto> result = response.body().getObj();
-                if (result.size() == 0){
-                    Toast.makeText(getContext(),"到底啦....",Toast.LENGTH_LONG).show();
-                }
-                if (movingDtoList.size() == 0) {
-                    movingDtoList = result;
-                    setAdapter();
-                } else {
-                    movingDtoList.addAll(result);
-                    adapter.notifyDataSetChanged();
+                if (response.body() != null) {
+                    List<MovingDto> result = response.body().getObj();
+                    if (result != null) {
+                        Toast.makeText(getContext(), "到底啦....", Toast.LENGTH_LONG).show();
+                    }
+                    if (movingDtoList.size() == 0) {
+                        movingDtoList = result;
+                        setAdapter();
+                    } else {
+                        movingDtoList.addAll(result);
+                        adapter.notifyDataSetChanged();
+                    }
                 }
 
             }
@@ -135,7 +137,6 @@ public class MovingFragment extends BaseFragment {
         movingDtoList = new ArrayList<>();
         initMovingData();
     }
-
 
 
     public void refresh() {

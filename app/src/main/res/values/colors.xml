@@ -16,4 +16,6 @@
     <color name="none_color">#00000000</color>
     <color name="colorFleet">#bfbfbf</color>
     <color name="background">#F6F6F6</color>
+    <color name="white_grey">#EBECEE</color>
+
 </resources>

@@ -2,6 +2,7 @@ package com.example.administrator.superandroid.intent;
 
 
 import com.example.administrator.superandroid.dto.BeautyDto;
+import com.example.administrator.superandroid.dto.CommentDto;
 import com.example.administrator.superandroid.dto.ListResponseDto;
 import com.example.administrator.superandroid.dto.MarketDto;
 import com.example.administrator.superandroid.dto.MovingDto;
@@ -59,4 +60,10 @@ public interface RetrofitService {
 
     @GET("/user/find/data")
     Call<ResponseDto<UserFindDataDto>> getUserFindData(@Query("userId") long userId);
+
+    @GET("/moving/comment")
+    Call<List<CommentDto>> getCommentDto(@Query("movingId") long movingId);
+
+    @POST("/moving/publishdiscuss")
+    Call<String> publishdiscuss(CommentDto commentDto);
 }

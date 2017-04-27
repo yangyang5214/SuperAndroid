@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.expressdelivery.R;
 import com.example.expressdelivery.entity.Extras;
 import com.example.expressdelivery.entity.RequestCode;
 import com.example.expressdelivery.entity.SearchInfo;

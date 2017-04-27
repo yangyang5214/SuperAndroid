@@ -1,20 +1,22 @@
 package com.example.administrator.superandroid.dto;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/3/11.
  */
-public class MovingDto {
+public class MovingDto implements Serializable {
 
+    private long id;
     private String content;
     private String position;
     private List<String> imageUrl = new ArrayList<>();
     private String publishTime;
 
-    private String userId;
+    private long userId;
     private String userName; //昵称
     private String avatarUrl;//头像
 
@@ -22,6 +24,8 @@ public class MovingDto {
 
     public MovingDto() {
     }
+
+
 
     public int getMovingType() {
         return movingType;
@@ -41,11 +45,19 @@ public class MovingDto {
         this.listComment = listComment;
     }
 
-    public String getUserId() {
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(long userId) {
         this.userId = userId;
     }
 

@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.administrator.superandroid">
 
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- 网络权限 -->
@@ -30,9 +29,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
-
-        </activity>
+        <activity android:name=".activity.MainActivity"></activity>
         <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,17 +44,17 @@
         <activity android:name=".activity.ImageFile" />
         <activity android:name=".view.GridImage" />
         <activity android:name=".activity.main.UniversityActivity" />
-        <activity android:name=".activity.main.LibraryActivity"  android:hardwareAccelerated="true">
-
-
-        </activity>
+        <activity
+            android:name=".activity.main.LibraryActivity"
+            android:hardwareAccelerated="true"></activity>
         <activity android:name=".activity.main.SchoolCalendarActivity" />
         <activity android:name=".activity.main.ServerActivity" />
         <activity android:name=".activity.NoticeActivity" />
         <activity android:name=".activity.publish.BeautyPublishActivity" />
         <activity android:name=".activity.publish.MovingPublishActivity" />
         <activity android:name=".activity.publish.MarketPublishActivity" />
-        <activity android:name=".activity.ShowImageDetailsActivity"></activity>
+        <activity android:name=".activity.ShowImageDetailsActivity" />
+        <activity android:name=".activity.MovingDetailsActivity"></activity>
     </application>
 
 </manifest>

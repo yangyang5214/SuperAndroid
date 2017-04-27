@@ -66,18 +66,18 @@ public class OneImageGridViewAdpter extends BaseAdapter {
                 .placeholder(R.drawable.default_image)
                 .error(R.drawable.default_image)
                 .into(viewHolder.imageView);
-        viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                        //对图片进行查看，删除
-                        Intent intent = new Intent(context, ShowImageDetailsActivity.class);
-                        intent.putExtra("ID", positionId);
-                        Bundle bundle=new Bundle();
-                        bundle.putStringArrayList("imageList", (ArrayList<String>) urlList);
-                        intent.putExtras(bundle);
-                        context.startActivity(intent);
-                    }
-        });
+//        viewHolder.imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                        //对图片进行查看，删除
+//                        Intent intent = new Intent(context, ShowImageDetailsActivity.class);
+//                        intent.putExtra("ID", positionId);
+//                        Bundle bundle=new Bundle();
+//                        bundle.putStringArrayList("imageList", (ArrayList<String>) urlList);
+//                        intent.putExtras(bundle);
+//                        context.startActivity(intent);
+//                    }
+//        });
         return convertView;
     }
 

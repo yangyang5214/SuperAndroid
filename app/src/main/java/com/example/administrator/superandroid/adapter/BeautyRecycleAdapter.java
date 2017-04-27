@@ -11,9 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.bumptech.glide.Glide;
 import com.example.administrator.superandroid.R;
-import com.example.administrator.superandroid.activity.GalleryActivity;
+import com.example.administrator.superandroid.activity.MovingDetailsActivity;
 import com.example.administrator.superandroid.activity.ShowImageDetailsActivity;
 import com.example.administrator.superandroid.dto.BeautyDto;
 import com.example.expressdelivery.util.HttpClient;
@@ -28,14 +27,15 @@ import java.util.List;
 public class BeautyRecycleAdapter extends RecyclerView.Adapter<BeautyRecycleAdapter.BeautyView>{
     private List<BeautyDto> beautyDtoList;
     private Context context;
-    public BeautyRecycleAdapter(List<BeautyDto> beautyDtoList,Context context) {
+
+    public BeautyRecycleAdapter(List<BeautyDto> beautyDtoList, Context context) {
         this.beautyDtoList = beautyDtoList;
         this.context = context;
     }
 
     @Override
     public BeautyView onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.beauty_recycle_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.beauty_recycle_item, parent, false);
         return new BeautyView(view);
     }
 
@@ -47,6 +47,7 @@ public class BeautyRecycleAdapter extends RecyclerView.Adapter<BeautyRecycleAdap
                 .error(R.drawable.default_image)
                 .into(holder.imageView);
         holder.textView.setText(beautyDtoList.get(position).getContent());
+
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,12 +70,13 @@ public class BeautyRecycleAdapter extends RecyclerView.Adapter<BeautyRecycleAdap
     }
 
 
-    public static class BeautyView extends  RecyclerView.ViewHolder{
+    public static class BeautyView extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView textView;
-        public BeautyView(View itemView){
+
+        public BeautyView(View itemView) {
             super(itemView);
-            imageView= (ImageView) itemView.findViewById(R.id.recycle_item_img );
+            imageView = (ImageView) itemView.findViewById(R.id.recycle_item_img);
             textView = (TextView) itemView.findViewById(R.id.recycle_item_text);
         }
 

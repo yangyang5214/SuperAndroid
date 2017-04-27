@@ -57,17 +57,17 @@ public class MarketFragment extends BaseFragment {
             @Override
             public void onResponse(Call<List<MarketDto>> call, Response<List<MarketDto>> response) {
                 List<MarketDto> result = response.body();
-                if (result.size() == 0){
+                if (result == null){
                     Toast.makeText(getContext(),"到底啦....",Toast.LENGTH_LONG).show();
+                }else {
+                    if (marketDtoList.size() == 0) {
+                        marketDtoList = result;
+                        setAdapter();
+                    } else {
+                        marketDtoList.addAll(result);
+                        adapter.notifyDataSetChanged();
+                    }
                 }
-                if (marketDtoList.size() == 0) {
-                    marketDtoList = result;
-                    setAdapter();
-                } else {
-                    marketDtoList.addAll(result);
-                    adapter.notifyDataSetChanged();
-                }
-
             }
 
             @Override
