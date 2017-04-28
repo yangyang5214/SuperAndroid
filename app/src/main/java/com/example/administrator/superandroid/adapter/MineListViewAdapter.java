@@ -58,7 +58,7 @@ public class MineListViewAdapter extends BaseAdapter{
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.imageView.setBackgroundResource(listIcon.get(position));
+//        viewHolder.imageView.setBackgroundResource(listIcon.get(position));
         viewHolder.textView.setText(listName.get(position));
         return convertView;
     }

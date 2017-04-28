@@ -124,16 +124,16 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         listIcon = new ArrayList<>();
 
         listName.add("消息");
-        listIcon.add(R.drawable.message);
+//        listIcon.add(R.drawable.message);
 
         listName.add("分享");
-        listIcon.add(R.drawable.share_mine);
-
+//        listIcon.add(R.drawable.share_mine);
+//
         listName.add("意见反馈");
-        listIcon.add(R.drawable.comment_mine);
+//        listIcon.add(R.drawable.comment_mine);
 
         listName.add("关于");
-        listIcon.add(R.drawable.comment_mine);
+//        listIcon.add(R.drawable.comment_mine);
     }
 
     @Override

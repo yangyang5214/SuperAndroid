@@ -64,7 +64,7 @@ public class DiscussAdapter extends BaseAdapter {
         viewHolder.textTime.setText(discussList.get(i).getCommentTime());
         viewHolder.textNickname.setText(discussList.size() - i + "楼   " + discussList.get(i).getCommentUserName());
 
-        viewHolder.textContent.setText("回复 " + discussList.get(i).getCommentUserName() + ":" + discussList.get(i).getContent());
+        viewHolder.textContent.setText("回复 " + discussList.get(i).getUnCommentUserName() + ":" + discussList.get(i).getContent());
         Picasso.with(context).load(discussList.get(i).getCommentUserImage()).into(viewHolder.imagePhoto);
         return view;
     }
